@@ -14,7 +14,25 @@ class SpinnerWinnerController extends Controller
      */
     public function index()
     {
-        //
+        {
+            $title = 'All Noor Gamers';
+            $i = 0;
+            $total = SpinnerWinner::count();
+            $forms = SpinnerWinner::orderBy('id','desc')->get();
+
+
+            // if (request()->ajax()) {
+            //     return datatables()->of(Form::select('*'))
+            //         ->addColumn('action', 'action')
+            //         ->rawColumns(['action'])
+            //         ->addIndexColumn()
+            //         ->make(true);
+            // }
+            // dd($forms);
+            return view('newLayout.spinerindex',compact('total','title','forms'));
+        }
+
+
     }
 
     /**

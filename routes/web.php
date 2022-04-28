@@ -6,6 +6,7 @@ use App\Http\Controllers\FormController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\FormNumberConroller;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\SpinnerWinnerController;
 use App\Http\Controllers\Admin\CashAppController;
 use App\Http\Controllers\Cashier\CashierController;
 use App\Http\Controllers\Admin\AdminController;
@@ -38,11 +39,11 @@ Route::get('/game/{x}', [FormNumberConroller::class, 'go'])->name('fire.go');
 //formtest route
 Route::get('/ohana',function()
 {
-   return view('test'); 
+   return view('test');
 });
 Route::get('/test1',function()
 {
-   return view('test2'); 
+   return view('test2');
 });
 
 
@@ -79,6 +80,13 @@ Route::get('forms/edit/{id}', [FormController::class, 'edit'])->name('forms.edit
 Route::post('saveNoteForm', [FormController::class, 'saveNote'])->name('forms.saveNoteForm');
 Route::get('forms/destroy/{id}', [FormController::class, 'destroy'])->name('forms.destroy');
 
+//prasun
+
+Route::resource('spinners', SpinnerWinnerController::class);
+Route::get('spinners/index', [SpinnerWinnerController::class, 'index'])->name('spinners.index');
+Route::get('spinners/edit/{id}', [SpinnerWinnerController::class, 'edit'])->name('spinners.edit');
+Route::post('saveNoteForm', [SpinnerWinnerController::class, 'saveNote'])->name('spinners.saveNoteForm');
+Route::get('spinners/destroy/{id}', [SpinnerWinnerController::class, 'destroy'])->name('spinners.destroy');
 
 // Route::get('/new-home', [App\Http\Controllers\HomeController::class, 'new-index'])->name('new-home');
 Route::resource('/imageupload',ImageController::class);
