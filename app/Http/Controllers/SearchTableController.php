@@ -81,7 +81,7 @@ class SearchTableController extends Controller
             // dd($activeCashApp);
             if ($request->ajax()) {
                 $formGames = $formGames->where('game_id', 'like', "%" . $request->value . "%")->paginate(10);
-                return view('newLayout.components.table', ['activeGame' => $activeGame, 'activeCashApp' => $activeCashApp,'formGames' => $formGames]);
+                return view('newLayout.components.listTable', ['activeGame' => $activeGame, 'activeCashApp' => $activeCashApp,'formGames' => $formGames]);
             }else{
                 $formGames = $formGames->paginate(10);
                 return view('newLayout.table', compact('forms', 'games', 'activeGame', 'history', 'activeCashApp', 'cashApp', 'formGames'));
