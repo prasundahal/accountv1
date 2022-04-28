@@ -1,12 +1,12 @@
 <?php
       $final_encoded = json_encode($final);
-     
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
- 
+
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="https://noorgames.net/images/logochangecolor.gif">
@@ -27,7 +27,7 @@
     <!-- Icons font CSS-->
 
     <!-- Font special for pages-->
-    
+
     <link rel="stylesheet" href="assets/main.css" type="text/css" />
         <script type="text/javascript" src="assets/winwheel.js"></script>
         <script src="assets/tweenmax.js"></script>
@@ -43,7 +43,7 @@
 
     <link href="{{ asset('css/main.css') }}" rel="stylesheet" media="all">
       <link href="{{ asset('css/my.css') }}" rel="stylesheet" media="all">
-      
+
       <!---->
      <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -56,13 +56,13 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="{{asset('public/newAdmin/css/argon-dashboard.css')}}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.jqueryui.css" /> 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.jqueryui.css" /> 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.jqueryui.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.jqueryui.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/digital-7-mono" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" >
-    
+
 
     <style>
     .hidden{
@@ -79,7 +79,7 @@
            .input-group.border-custom {
                border:0;
            }
-       .input-group.border-custom::after { 
+       .input-group.border-custom::after {
                  content:'';
                  height: 2px;
                 width: 106px;
@@ -87,16 +87,16 @@
         }
         #captcha_image {
                 border: 2px solid #d36d77;
-         
+
     animation: glowing 1300ms infinite;
         }
          }
-        
 
 
 
 
-        
+
+
     </style>
 </head>
 
@@ -109,7 +109,7 @@
              <div id="main-container" >
              <div class="aside gradient-border">
                  <div class="text-center mt-4" style="height:100vh">
-                      
+
                         <div id="image-carousel" class="carousel slide" data-ride="carousel" style="margin-left:85px">
                             <div class="player-list neon-text" style="height:100vh !important;overflow:scroll;font-family:cursive;background:rgba(0,0,0,0.6) ">
                      <div style="width:22vw;">
@@ -120,7 +120,7 @@
                             <li id="demo" style="background:rgba(0,0,0,0.6);border:1px solid red;border-radius:5px;padding:5px;margin-bottom:10px;padding:10px;list-style:none;display:flex;justify-content:space-between"><span style="font-size:25px">3</span><span class="neon-text">zoror</span></li>
                         </ul>
                      </div>
-                     
+
                  </div>
                             <!--<ol class="carousel-indicators">-->
                             <!--    <li data-target="#image-carousel" data-slide-to="0" class="active"></li>-->
@@ -159,45 +159,45 @@
                             <!--    <span class="sr-only">Next</span>-->
                             <!--</a>-->
                         </div>
-                      
+
                         <!--<img src="{{ URL::to('/images/popular.gif') }}" width="400" height="500">-->
                     </div>
-       
+
             </div>
             <div class="canvas-wrap2" style="z-index:1 !important;background:rgba(0,0,0,0.6);align-self:center;height:105vh">
             <table style="position:relative;top:20%">
                 <tr>
-                    
+
                         <td>
                             <button id="bigButton" class="bigButton" onclick="calculatePrize(); this.disabled=true;" style="color:red">Spin the Wheel</button>
                             <div id="winnerinfo"></div>
                         </td>
                     <td>
                         <div class="canvas-wrap">
-            
+
                         <canvas id="canvas" width="600" height="600">
-                            
+
                         </canvas>
-                        
+
                         </div>
             <div class="text-center pt-3">
                         <h4><b><span class="neon-text font-weight-bold">Copyright Noorgames</span> <span class="just-neon">© 2021</span> <span class="neon-text"> All Rights Reserved</span><b></h4>
                     </div>
                     </td>
-                    
+
                 </tr>
-                
-                    
-                    
-                        
-                    
-        
+
+
+
+
+
+
             </table>
 
             </div>
             <div class="aside gradient-border">
                  <div class="text-center mt-4" style="height:100vh">
-                      
+
                         <div id="image-carousel" class="carousel slide" data-ride="carousel" style="bakcground:rgba(0,0,0,0.6) !important">
                  <div class="player-list2 neon-text" style="height:-webkit-fill-available;overflow:scroll;font-family:cursive;background:rgba(0,0,0,0.6);right:15px !important; width:30vw ">
                      <div style="width:22vw">
@@ -208,7 +208,7 @@
                             <li id="demo" style="background:rgba(0,0,0,0.6);border:1px solid red;border-radius:5px;padding:5px;margin-bottom:10px;padding:10px;list-style:none;display:flex;justify-content:space-between"><span style="font-size:25px">3</span><span class="neon-text"></:sapn>zoror</span></li>
                         </ul>
                      </div>
-                     
+
                  </div>
                             <!--<ol class="carousel-indicators">-->
                             <!--    <li data-target="#image-carousel" data-slide-to="0" class="active"></li>-->
@@ -247,7 +247,7 @@
                             <!--    <span class="sr-only">Next</span>-->
                             <!--</a>-->
                         </div>
-                      
+
                         <!--<img src="{{ URL::to('/images/popular.gif') }}" width="400" height="500">-->
                     </div>
             </div>
@@ -256,7 +256,7 @@
     <!--    <div class="wrapper wrapper--w680" style="max-width:100%">-->
     <!--        <div class="card card-1 py-5">-->
                 <!--<div class="card-heading">-->
-                    
+
                 <!--</div>-->
     <!--            <div>-->
     <!--                <h2 class="font-weight-bold text-center main-header-text">-->
@@ -273,7 +273,7 @@
     <!--                <h3 class="mt-4">    -->
     <!--                    <span class="font-weight-bold neon-text blink">Be the owner of your luck</span>.-->
     <!--                </h3>-->
-                   
+
     <!--            </div> -->
     <!--            <div><h1>-->
     <!--            </div>-->
@@ -281,21 +281,21 @@
     <!--        <p class="date-div" style="height:7%;font-size:40px;"></p>-->
     <!--        <p class="date-countdown " style="height:7%;font-size:59px;font-family:s!important"></p>-->
     <!--      </div>-->
-                
+
     <!--            <div class = "text-center logo">-->
     <!--                  <img src="{{ URL::to('/images/dragonnn.gif') }}" width="220" height="250" class="w-auto">-->
     <!--            </div>-->
-                 
+
 
     <!--            <div class="card-body p-5">-->
                     <!--<h1 style="color:yellow; text-align:center" class="title">Welcome to Noor Games! :-D </br>Fill out the following form to get registered into our room. We will send you the <b>Monthly Match</b> based on the date you joined us as a loyal customer. </br> All the best!!!</h1>-->
-          
-                        
+
+
     <!--                    @if ($errors->any())-->
     <!--                    <div class="alert alert-danger neon-text-danger mt-3">-->
     <!--                        <ul>-->
     <!--                            @foreach ($errors->all() as $error)-->
-                              
+
     <!--                                <h3><li>{{ $error }}</li></h3>-->
     <!--                            @endforeach-->
     <!--                        </ul>-->
@@ -308,7 +308,7 @@
             <script>
                 document.getElementById("captcha_image").src="https://test.noorgames.net/captcha_image.php?"+Math.random();
                 var captchaImage = document.getElementById("captcha_image");
-                
+
                 var refreshButton = document.getElementById("refresh-captcha");
                 refreshButton.onclick = function(event) {
                     event.preventDefault();
@@ -325,11 +325,11 @@
             </div>
         </div>
     </div>
-    
-    
+
+
 
     <!-- Jquery JS-->
-    
+
     <script src="js/jquery.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 
@@ -373,7 +373,7 @@
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.flash.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.js"></script> 
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.js"></script>
 
 
 <script src="{{asset('public/js/core/popper.min.js')}}"></script>
@@ -397,20 +397,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="{{asset('public/js/table.js')}}"></script>
     <script>
-    
+
          $(document).ready( function () {
                $('.captcha-input').on('keypress',function(e) {
                   if(!($('.captcha-error').hasClass('hidden'))){
                       $('.captcha-error').addClass('hidden');
                   }
                 });
-             
+
 
               $('.submit-btn').on('click',function(e) {
                   console.log('clicked');
                     e.preventDefault();
                     var form = $('#regForm');
-                    
+
                     if($('input[name="full_name"]').val() == ''){
                         toastr.error('Error','Enter Full Name');
                         return;
@@ -439,7 +439,7 @@
                     //     toastr.error('Error','Enter Full Name');
                     //     return;
                     // }
-                    
+
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
@@ -458,7 +458,7 @@
                                 }else{
                                     toastr.error('Error','Captcha Incorrect');
                                 }
-                                
+
                             },
                             error: function (data) {
                                 toastr.error('Error','Something went wrong. Please Try again.');
@@ -466,7 +466,7 @@
                         });
                 });
             } );
-    
+
         var x, i, j, l, ll, selElmnt, a, b, c;
         /* Look for any elements with the class "custom-select-neon": */
         x = document.getElementsByClassName("custom-select-neon");
@@ -521,7 +521,7 @@
             this.classList.toggle("select-arrow-active");
           });
         }
-        
+
         function closeAllSelect(elmnt) {
           /* A function that will close all select boxes in the document,
           except the current select box: */
@@ -543,24 +543,24 @@
             }
           }
         }
-        
+
         /* If the user clicks anywhere outside the select box,
         then close all select boxes: */
         document.addEventListener("click", closeAllSelect);
-        
-        
-        
-        
-        // 
-        
+
+
+
+
+        //
+
             playerArray=[];
 
             playerArray['player_info']=[
-                {   
+                {
                     id:"1",
                     name:"Prasil"
                 },
-                {  
+                {
                     id:"2",
                     name:"Gaurav"
                 },
@@ -576,23 +576,23 @@
                     name:"Prasil",
                 }
             ]
-            
+
             var jsonData = JSON.parse('<?= $final_encoded; ?>');
             var jsonArray=<?= $final_encoded; ?>;
-            
-            
-            
+
+
+
             console.log(jsonArray);
-            
+
             // console.log(jsonData);
-            
+
             var res = [];
             var res_winner = [];
-              
-           
+
+
             //build array for segments for wheel
             var segments = [];
-            
+
 
             //console.log(res);
             jsonData.players_list.forEach(element => {
@@ -608,14 +608,14 @@
 
             //get id from winner info and compare with player info
             var winner_info_id = jsonData.winner_info.player_id;
-            
+
             document.getElementById("winnerinfo").innerHTML = "<br><br>winner will be "+jsonData.winner_info.player_name;
-            
+
             //get the index of winner info id
             var winner_info_index = jsonData.players_list.findIndex(x => x.player_id == winner_info_id);
-            
+
             //console.log(jsonData.winner_info);
-            
+
 
             // //convert the player array into a json string
             // playerArray = JSON.stringify(playerArray);
@@ -625,16 +625,16 @@
 
 
             //170 default radi
-            
+
             textSize=10
-            
+
             if(player_info_length<20) textFontSize= 20
             else if(player_info_length<80) textFontSize=15
             else textFontSize=10
-    
+
             spin_duration=randomIntFromInterval(10,20); //make spin time random
             spin_times=randomIntFromInterval(3,6);
-    
+
              let theWheel = new Winwheel({
         'numSegments'    : player_info_length,
         'outerRadius'    : 270,
@@ -661,25 +661,25 @@
         // // Get the audio with the sound it in, then play.
         // let winsound = document.getElementById('winsound');
         // winsound.play();
- 
+
         // Get the number of the winning segment.
         let winningSegmentNumber = theWheel.getIndicatedSegmentNumber();
- 
+
         // Loop and set fillStyle of all segments to gray.
         for (let x = 1; x < theWheel.segments.length; x ++) {
             theWheel.segments[x].fillStyle = 'gray';
         }
- 
+
         // Make the winning one yellow.
         theWheel.segments[winningSegmentNumber].fillStyle = 'yellow';
- 
+
         // Call draw function to render changes.
         theWheel.draw();
- 
+
         // Also re-draw the pointer, otherwise it disappears.
         drawTriangle();
     }
-    
+
 function generateRandomColor(){
     let color = "#";
   for (let i = 0; i < 3; i++)
@@ -687,10 +687,10 @@ function generateRandomColor(){
   return color;
 }
 
-function randomIntFromInterval(min, max) { // min and max included 
+function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
- 
+
  function playSound()
  {
      // Stop and rewind the sound (stops it if already playing).
@@ -700,7 +700,7 @@ function randomIntFromInterval(min, max) { // min and max included
      // Play the sound.
      audio.play();
  }
- 
+
     // Function with formula to work out stopAngle before spinning animation.
     // Called from Click of the Spin button.
     function calculatePrize(winner_info=winner_info_index)
@@ -715,15 +715,15 @@ function randomIntFromInterval(min, max) { // min and max included
         // Start the spin animation here.
         theWheel.startAnimation();
     }
- 
+
     // Usual pointer drawing code.
     drawTriangle();
- 
+
     function drawTriangle()
     {
         // Get the canvas context the wheel uses.
         let ctx = theWheel.ctx;
- 
+
         ctx.strokeStyle = 'navy';     // Set line colour.
         ctx.fillStyle   = 'aqua';     // Set fill colour.
         ctx.lineWidth   = 2;
@@ -735,19 +735,19 @@ function randomIntFromInterval(min, max) { // min and max included
         ctx.stroke();                 // Complete the path by stroking (draw lines).
         ctx.fill();                   // Then fill.
     }
-    
-    
+
+
 
 
     </script>
-    
-    
 
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
     <style>
         #main-container{
            display:flex ;
@@ -756,11 +756,11 @@ function randomIntFromInterval(min, max) { // min and max included
            position:fixed;
            width:100vw !important;
         }
-        
+
  .aside{
     width:100%;
     background:rgba(0,0,0,0.6) ;
-    
+
 }
 
 .canvas-wrap{
@@ -771,10 +771,10 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 #canvas{
-   
+
     position: relative;
     width: 32vw;
-    
+
 }
 
 
@@ -783,7 +783,7 @@ function randomIntFromInterval(min, max) { // min and max included
      position: absolute;
     height:100% !important;
     color: red;
-    
+
     /* top: 0px; */
     z-index: 1;
     font-size: 18px;
@@ -812,18 +812,18 @@ function randomIntFromInterval(min, max) { // min and max included
         #main-container :nth-child(1) { order: 2; }
         #main-container :nth-child(2) { order: 1; }
         #main-container :nth-child(3) { order: 3; }
-        
+
   #canvas{
       width:50vw;
   }
-  
+
   .player-list,.player-list2,.player-list>table,.player-list2>table{
       width:100% !important;
       left:70px;
   }
-  
 
- 
+
+
 }
 .player-list2{
     position: absolute;
@@ -867,7 +867,7 @@ function randomIntFromInterval(min, max) { // min and max included
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.flash.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.js"></script> 
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.js"></script>
 
 
 <script src="{{asset('public/js/core/popper.min.js')}}"></script>
@@ -923,7 +923,7 @@ function randomIntFromInterval(min, max) { // min and max included
             toastr.error(' {{ $error }}');
             </script>
         @endforeach
-    @else    
+    @else
         <script>
             toastr.error(' {{session('error') }}');
         </script>
@@ -993,11 +993,11 @@ function randomIntFromInterval(min, max) { // min and max included
     //      ],
     //     });
     // } );
-    
+
 </script>
-  
+
 <script>
-    
+
     jQuery(document).ready( function () {
 
         $(".jquery-width").css("width","100%");
@@ -1015,7 +1015,7 @@ function randomIntFromInterval(min, max) { // min and max included
               denyButtonText: `Delete`,
             }).then((result) => {
                 if (result.isConfirmed) {
-                } 
+                }
                 else if (result.isDenied) {
                     var cid = $(this).data('id');
                     $.ajax({
@@ -1033,7 +1033,7 @@ function randomIntFromInterval(min, max) { // min and max included
                                 // console.log( index + ": " + $( this ).text() );
                             })
                             toastr.success('Success',"Deleted");
-                            
+
                         },
                         error: function (data) {
                             console.log(data);
@@ -1044,7 +1044,7 @@ function randomIntFromInterval(min, max) { // min and max included
                 }
             });
         });
-      
+
         $('.datatable tbody').on('click', '.edit-form', function () {
             $('.editFormModal').modal('show');
             var cid = $(this).data('id');
@@ -1066,7 +1066,7 @@ function randomIntFromInterval(min, max) { // min and max included
                                 // console.log( index + ": " + $( this ).text() );
                             // })
                             // toastr.success('Success',"Deleted");
-                            
+
                         },
                         error: function (data) {
                             console.log(data);
@@ -1074,9 +1074,9 @@ function randomIntFromInterval(min, max) { // min and max included
                         }
                     });
         });
-     
-   
-   
+
+
+
    });
 </script>
 <script>
@@ -1142,7 +1142,7 @@ monthNames[11]="December";
              hourTemp = "0" + hour.toString();
              $('.date-div').text(dayName + ", "+monthdayTemp+" " + monthName2 + "," + year );
 
-             
+
              $('.date-countdown').text(hourTemp + " : " + minuteTemp + " : " + secondTemp + " " + ap);
          // document.getElementById('time').innerHTML = monthnumberTemp + "/" + monthdayTemp + "/" + year + " " + hourTemp + ":" + minuteTemp + ":" + secondTemp + " " + ap;
      }

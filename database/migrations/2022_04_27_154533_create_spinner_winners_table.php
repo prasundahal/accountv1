@@ -18,13 +18,11 @@ class CreateSpinnerWinnersTable extends Migration
             $table->string('full_name')->nullable();
             $table->string('number')->nullable();
             $table->string('email')->nullable();
-
-            
-               $table->string('address')->nullable();
-             $table->dateTime('intervals');
-             $table->string('count');
+            $table->string('address')->nullable();
+            $table->dateTime('intervals');
+            $table->string('count');
             $table->string('note')->nullable();
-             $table->tinyInteger('status')->default('0');
+            $table->tinyInteger('status')->default('0');
             $table->string('r_id')->nullable();
             $table->timestamps();
         });
