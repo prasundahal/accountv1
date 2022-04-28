@@ -674,7 +674,6 @@ class ComposerStaticInit95456f04242388bc86d615ceae485e06
         'App\\Models\\Image' => __DIR__ . '/../..' . '/app/Models/Image.php',
         'App\\Models\\LoginLog' => __DIR__ . '/../..' . '/app/Models/LoginLog.php',
         'App\\Models\\Setting' => __DIR__ . '/../..' . '/app/Models/Setting.php',
-        'App\\Models\\SpinnerWinner' => __DIR__ . '/../..' . '/app/Models/SpinnerWinner.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Notifications\\NewFormOccurred' => __DIR__ . '/../..' . '/app/Notifications/NewFormOccurred.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',

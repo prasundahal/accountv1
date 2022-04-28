@@ -61,7 +61,6 @@ return array(
     'App\\Models\\Image' => $baseDir . '/app/Models/Image.php',
     'App\\Models\\LoginLog' => $baseDir . '/app/Models/LoginLog.php',
     'App\\Models\\Setting' => $baseDir . '/app/Models/Setting.php',
-    'App\\Models\\SpinnerWinner' => $baseDir . '/app/Models/SpinnerWinner.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Notifications\\NewFormOccurred' => $baseDir . '/app/Notifications/NewFormOccurred.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

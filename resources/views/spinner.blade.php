@@ -1,15 +1,14 @@
 <?php
       $final_encoded = json_encode($final);
-
+     
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
+ 
     <!-- Required meta tags-->
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="https://noorgames.net/images/logochangecolor.gif">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     <meta name="description" content="Noor-games">
     <meta name="author" content="Noor-games">
@@ -27,7 +26,7 @@
     <!-- Icons font CSS-->
 
     <!-- Font special for pages-->
-
+    
     <link rel="stylesheet" href="assets/main.css" type="text/css" />
         <script type="text/javascript" src="assets/winwheel.js"></script>
         <script src="assets/tweenmax.js"></script>
@@ -43,27 +42,6 @@
 
     <link href="{{ asset('css/main.css') }}" rel="stylesheet" media="all">
       <link href="{{ asset('css/my.css') }}" rel="stylesheet" media="all">
-
-      <!---->
-     <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-    <!-- Nucleo Icons -->
-    <link href="{{asset('public/newAdmin/css/nucleo-icons.css')}}" rel="stylesheet" />
-    <link href="{{asset('public/newAdmin/css/nucleo-svg.css')}}" rel="stylesheet" />
-    <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="{{asset('newAdmin/css/nucleo-svg.css')}}" rel="stylesheet" />
-    <!-- CSS Files -->
-    <link id="pagestyle" href="{{asset('public/newAdmin/css/argon-dashboard.css')}}" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.jqueryui.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.jqueryui.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/digital-7-mono" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" >
-
-
     <style>
     .hidden{
         display:none;
@@ -79,7 +57,7 @@
            .input-group.border-custom {
                border:0;
            }
-       .input-group.border-custom::after {
+       .input-group.border-custom::after { 
                  content:'';
                  height: 2px;
                 width: 106px;
@@ -87,16 +65,20 @@
         }
         #captcha_image {
                 border: 2px solid #d36d77;
-
+         
     animation: glowing 1300ms infinite;
         }
          }
+        
+#main-container{
+    display:flex ;
+}
 
-
-
-
-
-
+.aside{
+    width:100%;
+    background-image:url('https://test.noorgames.net/images/fin.mp4');
+}
+        
     </style>
 </head>
 
@@ -106,30 +88,63 @@
     <source src="{{url('images/fin.mp4')}}" type="video/mp4">
     Your browser does not support HTML5 video.
     </video>
-             <div id="main-container" >
-             <div class="aside gradient-border">
-                 <div class="text-center mt-4" style="height:100vh">
+    <div class="page-wrapper font-robo">
+        <div class="wrapper wrapper--w680" style="max-width:100%">
+            <div class="card card-1 py-5">
+                <!--<div class="card-heading">-->
+                    
+                <!--</div>-->
+                <div>
+                    <h2 class="font-weight-bold text-center main-header-text">
+                        WELCOME TO THE NOOR GAMES
+                    </h2>
+                </div>
+                <div class="mt-5 mx-5 text-center">
+                    <h3 style="line-height:2rem;">
+                        <span class="neon-text font-weight-bold blink">Complete the registration process and start getting your bonus and rewards</span>. 
+                    </h3>
+                    <h4 class="mt-4">
+                        <span class="font-weight-bold neon-text neon-text-danger blink-danger">You are only a few steps away</span>. 
+                    </h4>
+                    <h3 class="mt-4">    
+                        <span class="font-weight-bold neon-text blink">Be the owner of your luck</span>.
+                    </h3>
+                   
+                </div> 
+                <div class = "text-center logo">
+                      <img src="{{ URL::to('/images/dragonnn.gif') }}" width="220" height="250" class="w-auto">
+                </div>
 
-                        <div id="image-carousel" class="carousel slide" data-ride="carousel" style="margin-left:85px">
-                            <div class="player-list neon-text" style="height:100vh !important;overflow:scroll;font-family:cursive;background:rgba(0,0,0,0.6) ">
-                     <div style="width:22vw;">
-                      <strong><h3 style="margin-left:25px"><b><span class="neon-text font-weight-bold">Popular Games</span></b></h3></strong>
-                       <ul>
-                            <li id="demo" style="background:rgba(0,0,0,0.6);border:1px solid red;border-radius:5px;padding:5px;margin-bottom:10px;padding:10px;list-style:none;display:flex;justify-content:space-between"><span style="font-size:25px">1</span><span class="neon-text">:Jack the ripper</span></li>
-                            <li id="demo" style="background:rgba(0,0,0,0.6);border:1px solid blue;border-radius:5px;padding:5px;margin-bottom:10px;padding:10px;list-style:none;display:flex;justify-content:space-between"><span style="font-size:25px">2</span><span class="neon-text">:Monkey D Luffy</span></li>
-                            <li id="demo" style="background:rgba(0,0,0,0.6);border:1px solid red;border-radius:5px;padding:5px;margin-bottom:10px;padding:10px;list-style:none;display:flex;justify-content:space-between"><span style="font-size:25px">3</span><span class="neon-text">zoror</span></li>
-                        </ul>
-                     </div>
+                <div class="card-body p-5">
+                    <!--<h1 style="color:yellow; text-align:center" class="title">Welcome to Noor Games! :-D </br>Fill out the following form to get registered into our room. We will send you the <b>Monthly Match</b> based on the date you joined us as a loyal customer. </br> All the best!!!</h1>-->
+          
+                        
+                        @if ($errors->any())
+                        <div class="alert alert-danger neon-text-danger mt-3">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                              
+                                    <h3><li>{{ $error }}</li></h3>
+                                @endforeach
+                            </ul>
+                        </div>
+                        </br>
+                        @endif
 
-                 </div>
-                            <!--<ol class="carousel-indicators">-->
-                            <!--    <li data-target="#image-carousel" data-slide-to="0" class="active"></li>-->
-                            <!--    <li data-target="#image-carousel" data-slide-to="1"></li>-->
-                            <!--    <li data-target="#image-carousel" data-slide-to="2"></li>-->
-                            <!--    <li data-target="#image-carousel" data-slide-to="3"></li>-->
-                            <!--    <li data-target="#image-carousel" data-slide-to="4"></li>-->
-                            <!--    <li data-target="#image-carousel" data-slide-to="5"></li>-->
-                            <!--</ol>-->
+             <div id="main-container" style="display:flex;justify-content:center">
+             <div class="aside">
+                 <div class="text-center mt-4">
+                      <strong><h2><b><span class="neon-text font-weight-bold">Popular Games</span></b></h2></strong>
+                      
+                        <div id="image-carousel" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#image-carousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#image-carousel" data-slide-to="1"></li>
+                                <li data-target="#image-carousel" data-slide-to="2"></li>
+                                <li data-target="#image-carousel" data-slide-to="3"></li>
+                                <li data-target="#image-carousel" data-slide-to="4"></li>
+                                <li data-target="#image-carousel" data-slide-to="5"></li>
+                            </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
                                   <img class="d-block m-auto" src="{{ URL::to('/images/icon.gif') }}" width="400" height="500" alt="First slide">
@@ -159,65 +174,42 @@
                             <!--    <span class="sr-only">Next</span>-->
                             <!--</a>-->
                         </div>
-
+                      
                         <!--<img src="{{ URL::to('/images/popular.gif') }}" width="400" height="500">-->
                     </div>
-
+       
             </div>
-            <div class="canvas-wrap2" style="z-index:1 !important;background:rgba(0,0,0,0.6);align-self:center;height:105vh">
-            <table style="position:relative;top:20%">
+            <div>
+            <table>
                 <tr>
-
+                    
                         <td>
                             <button id="bigButton" class="bigButton" onclick="calculatePrize(); this.disabled=true;" style="color:red">Spin the Wheel</button>
                             <div id="winnerinfo"></div>
                         </td>
                     <td>
-                        <div class="canvas-wrap">
-
                         <canvas id="canvas" width="600" height="600">
-
+                            
                         </canvas>
-
-                        </div>
-            <div class="text-center pt-3">
-                        <h4><b><span class="neon-text font-weight-bold">Copyright Noorgames</span> <span class="just-neon">© 2021</span> <span class="neon-text"> All Rights Reserved</span><b></h4>
-                    </div>
                     </td>
-
+                    
+                    
                 </tr>
-
-
-
-
-
-
             </table>
-
             </div>
-            <div class="aside gradient-border">
-                 <div class="text-center mt-4" style="height:100vh">
-
-                        <div id="image-carousel" class="carousel slide" data-ride="carousel" style="bakcground:rgba(0,0,0,0.6) !important">
-                 <div class="player-list2 neon-text" style="height:-webkit-fill-available;overflow:scroll;font-family:cursive;background:rgba(0,0,0,0.6);right:15px !important; width:30vw ">
-                     <div style="width:22vw">
-                      <strong><h3 style="margin-left:25px"><b><span class="neon-text font-weight-bold">Popular Games</span></b></h3></strong>
-                        <ul>
-                            <li id="demo" style="background:rgba(0,0,0,0.6);border:1px solid red;border-radius:5px;padding:5px;margin-bottom:10px;padding:10px;list-style:none;display:flex;justify-content:space-between"><span style="font-size:25px">1</span><span class="neon-text">:Jack the ripper</span></li>
-                            <li id="demo" style="background:rgba(0,0,0,0.6);border:1px solid blue;border-radius:5px;padding:5px;margin-bottom:10px;padding:10px;list-style:none;display:flex;justify-content:space-between"><span style="font-size:25px">2</span><span class="neon-text">:Monkey D Luffy</span></li>
-                            <li id="demo" style="background:rgba(0,0,0,0.6);border:1px solid red;border-radius:5px;padding:5px;margin-bottom:10px;padding:10px;list-style:none;display:flex;justify-content:space-between"><span style="font-size:25px">3</span><span class="neon-text"></:sapn>zoror</span></li>
-                        </ul>
-                     </div>
-
-                 </div>
-                            <!--<ol class="carousel-indicators">-->
-                            <!--    <li data-target="#image-carousel" data-slide-to="0" class="active"></li>-->
-                            <!--    <li data-target="#image-carousel" data-slide-to="1"></li>-->
-                            <!--    <li data-target="#image-carousel" data-slide-to="2"></li>-->
-                            <!--    <li data-target="#image-carousel" data-slide-to="3"></li>-->
-                            <!--    <li data-target="#image-carousel" data-slide-to="4"></li>-->
-                            <!--    <li data-target="#image-carousel" data-slide-to="5"></li>-->
-                            <!--</ol>-->
+            <div class="aside">
+                 <div class="text-center mt-4">
+                      <strong><h2><b><span class="neon-text font-weight-bold">Popular Games</span></b></h2></strong>
+                      
+                        <div id="image-carousel" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#image-carousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#image-carousel" data-slide-to="1"></li>
+                                <li data-target="#image-carousel" data-slide-to="2"></li>
+                                <li data-target="#image-carousel" data-slide-to="3"></li>
+                                <li data-target="#image-carousel" data-slide-to="4"></li>
+                                <li data-target="#image-carousel" data-slide-to="5"></li>
+                            </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
                                   <img class="d-block m-auto" src="{{ URL::to('/images/icon.gif') }}" width="400" height="500" alt="First slide">
@@ -247,68 +239,17 @@
                             <!--    <span class="sr-only">Next</span>-->
                             <!--</a>-->
                         </div>
-
+                      
                         <!--<img src="{{ URL::to('/images/popular.gif') }}" width="400" height="500">-->
                     </div>
             </div>
            </div>
-    <!--<div class="page-wrapper font-robo">-->
-    <!--    <div class="wrapper wrapper--w680" style="max-width:100%">-->
-    <!--        <div class="card card-1 py-5">-->
-                <!--<div class="card-heading">-->
-
-                <!--</div>-->
-    <!--            <div>-->
-    <!--                <h2 class="font-weight-bold text-center main-header-text">-->
-    <!--                    WELCOME TO THE NOOR GAMES-->
-    <!--                </h2>-->
-    <!--            </div>-->
-    <!--            <div class="mt-5 mx-5 text-center">-->
-    <!--                <h3 style="line-height:2rem;">-->
-    <!--                    <span class="neon-text font-weight-bold blink">Complete the registration process and start getting your bonus and rewards</span>. -->
-    <!--                </h3>-->
-    <!--                <h4 class="mt-4">-->
-    <!--                    <span class="font-weight-bold neon-text neon-text-danger blink-danger">You are only a few steps away</span>. -->
-    <!--                </h4>-->
-    <!--                <h3 class="mt-4">    -->
-    <!--                    <span class="font-weight-bold neon-text blink">Be the owner of your luck</span>.-->
-    <!--                </h3>-->
-
-    <!--            </div> -->
-    <!--            <div><h1>-->
-    <!--            </div>-->
-    <!--       <div class="count-div p-3 text-center neon-text" style="font-family:s!important">-->
-    <!--        <p class="date-div" style="height:7%;font-size:40px;"></p>-->
-    <!--        <p class="date-countdown " style="height:7%;font-size:59px;font-family:s!important"></p>-->
-    <!--      </div>-->
-
-    <!--            <div class = "text-center logo">-->
-    <!--                  <img src="{{ URL::to('/images/dragonnn.gif') }}" width="220" height="250" class="w-auto">-->
-    <!--            </div>-->
-
-
-    <!--            <div class="card-body p-5">-->
-                    <!--<h1 style="color:yellow; text-align:center" class="title">Welcome to Noor Games! :-D </br>Fill out the following form to get registered into our room. We will send you the <b>Monthly Match</b> based on the date you joined us as a loyal customer. </br> All the best!!!</h1>-->
-
-
-    <!--                    @if ($errors->any())-->
-    <!--                    <div class="alert alert-danger neon-text-danger mt-3">-->
-    <!--                        <ul>-->
-    <!--                            @foreach ($errors->all() as $error)-->
-
-    <!--                                <h3><li>{{ $error }}</li></h3>-->
-    <!--                            @endforeach-->
-    <!--                        </ul>-->
-    <!--                    </div>-->
-    <!--                    </br>-->
-    <!--                    @endif-->
-
-    <!--                </br>-->
-          </div>
+                    </br>
+            
             <script>
                 document.getElementById("captcha_image").src="https://test.noorgames.net/captcha_image.php?"+Math.random();
                 var captchaImage = document.getElementById("captcha_image");
-
+                
                 var refreshButton = document.getElementById("refresh-captcha");
                 refreshButton.onclick = function(event) {
                     event.preventDefault();
@@ -325,11 +266,11 @@
             </div>
         </div>
     </div>
-
-
+    
+    
 
     <!-- Jquery JS-->
-
+    
     <script src="js/jquery.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 
@@ -346,71 +287,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
        <script src="https://kit.fontawesome.com/a26d9146a0.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-<!--   Core JS Files   -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-<script src="{{asset('public/js/jquery-input-mask-phone-number.min.js')}}"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.jqueryui.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.jqueryui.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.flash.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.js"></script>
-
-
-<script src="{{asset('public/js/core/popper.min.js')}}"></script>
-<script src="{{asset('public/js/core/bootstrap.min.js')}}"></script>
-<script src="{{asset('public/newAdmin/js/plugins/perfect-scrollbar.min.js')}}"></script>
-<script src="{{asset('public/newAdmin/js/plugins/smooth-scrollbar.min.js')}}"></script>
-<script src="{{asset('public/newAdmin/js/plugins/chartjs.min.js')}}"></script>
-<script src="{{asset('public/js/core/bootstrap.min.js')}}"></script>
-<!--<script src="{{asset('public/newAdmin/js/argon-dashboard.min.js')}}"></script>-->
-
-<script src="{{asset('js/editable.js')}}"></script>
-
-
-{{-- <script src="../../public/js/core/popper.min.js" type="text/javascript"></script>
-<script src="../../public/js/core/bootstrap.min.js" type="text/javascript"></script>
-<script src="../../public/js/plugins/bootstrap-notify.js"></script>
-<script src="../../public/js/light-bootstrap-dashboard790f.js" type="text/javascript"></script> --}}
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-
-<script src="{{asset('public/js/demo.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script src="{{asset('public/js/table.js')}}"></script>
     <script>
-
+    
          $(document).ready( function () {
                $('.captcha-input').on('keypress',function(e) {
                   if(!($('.captcha-error').hasClass('hidden'))){
                       $('.captcha-error').addClass('hidden');
                   }
                 });
-
+             
 
               $('.submit-btn').on('click',function(e) {
                   console.log('clicked');
                     e.preventDefault();
                     var form = $('#regForm');
-
+                    
                     if($('input[name="full_name"]').val() == ''){
                         toastr.error('Error','Enter Full Name');
                         return;
@@ -439,7 +330,7 @@
                     //     toastr.error('Error','Enter Full Name');
                     //     return;
                     // }
-
+                    
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
@@ -458,7 +349,7 @@
                                 }else{
                                     toastr.error('Error','Captcha Incorrect');
                                 }
-
+                                
                             },
                             error: function (data) {
                                 toastr.error('Error','Something went wrong. Please Try again.');
@@ -466,7 +357,7 @@
                         });
                 });
             } );
-
+    
         var x, i, j, l, ll, selElmnt, a, b, c;
         /* Look for any elements with the class "custom-select-neon": */
         x = document.getElementsByClassName("custom-select-neon");
@@ -521,7 +412,7 @@
             this.classList.toggle("select-arrow-active");
           });
         }
-
+        
         function closeAllSelect(elmnt) {
           /* A function that will close all select boxes in the document,
           except the current select box: */
@@ -543,24 +434,24 @@
             }
           }
         }
-
+        
         /* If the user clicks anywhere outside the select box,
         then close all select boxes: */
         document.addEventListener("click", closeAllSelect);
-
-
-
-
-        //
-
+        
+        
+        
+        
+        // 
+        
             playerArray=[];
 
             playerArray['player_info']=[
-                {
+                {   
                     id:"1",
                     name:"Prasil"
                 },
-                {
+                {  
                     id:"2",
                     name:"Gaurav"
                 },
@@ -576,23 +467,23 @@
                     name:"Prasil",
                 }
             ]
-
+            
             var jsonData = JSON.parse('<?= $final_encoded; ?>');
             var jsonArray=<?= $final_encoded; ?>;
-
-
-
+            
+            
+            
             console.log(jsonArray);
-
+            
             // console.log(jsonData);
-
+            
             var res = [];
             var res_winner = [];
-
-
+              
+           
             //build array for segments for wheel
             var segments = [];
-
+            
 
             //console.log(res);
             jsonData.players_list.forEach(element => {
@@ -608,14 +499,14 @@
 
             //get id from winner info and compare with player info
             var winner_info_id = jsonData.winner_info.player_id;
-
+            
             document.getElementById("winnerinfo").innerHTML = "<br><br>winner will be "+jsonData.winner_info.player_name;
-
+            
             //get the index of winner info id
             var winner_info_index = jsonData.players_list.findIndex(x => x.player_id == winner_info_id);
-
+            
             //console.log(jsonData.winner_info);
-
+            
 
             // //convert the player array into a json string
             // playerArray = JSON.stringify(playerArray);
@@ -625,16 +516,16 @@
 
 
             //170 default radi
-
+            
             textSize=10
-
+            
             if(player_info_length<20) textFontSize= 20
             else if(player_info_length<80) textFontSize=15
             else textFontSize=10
-
+    
             spin_duration=randomIntFromInterval(10,20); //make spin time random
             spin_times=randomIntFromInterval(3,6);
-
+    
              let theWheel = new Winwheel({
         'numSegments'    : player_info_length,
         'outerRadius'    : 270,
@@ -661,25 +552,25 @@
         // // Get the audio with the sound it in, then play.
         // let winsound = document.getElementById('winsound');
         // winsound.play();
-
+ 
         // Get the number of the winning segment.
         let winningSegmentNumber = theWheel.getIndicatedSegmentNumber();
-
+ 
         // Loop and set fillStyle of all segments to gray.
         for (let x = 1; x < theWheel.segments.length; x ++) {
             theWheel.segments[x].fillStyle = 'gray';
         }
-
+ 
         // Make the winning one yellow.
         theWheel.segments[winningSegmentNumber].fillStyle = 'yellow';
-
+ 
         // Call draw function to render changes.
         theWheel.draw();
-
+ 
         // Also re-draw the pointer, otherwise it disappears.
         drawTriangle();
     }
-
+    
 function generateRandomColor(){
     let color = "#";
   for (let i = 0; i < 3; i++)
@@ -687,10 +578,10 @@ function generateRandomColor(){
   return color;
 }
 
-function randomIntFromInterval(min, max) { // min and max included
+function randomIntFromInterval(min, max) { // min and max included 
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
-
+ 
  function playSound()
  {
      // Stop and rewind the sound (stops it if already playing).
@@ -700,7 +591,7 @@ function randomIntFromInterval(min, max) { // min and max included
      // Play the sound.
      audio.play();
  }
-
+ 
     // Function with formula to work out stopAngle before spinning animation.
     // Called from Click of the Spin button.
     function calculatePrize(winner_info=winner_info_index)
@@ -715,15 +606,15 @@ function randomIntFromInterval(min, max) { // min and max included
         // Start the spin animation here.
         theWheel.startAnimation();
     }
-
+ 
     // Usual pointer drawing code.
     drawTriangle();
-
+ 
     function drawTriangle()
     {
         // Get the canvas context the wheel uses.
         let ctx = theWheel.ctx;
-
+ 
         ctx.strokeStyle = 'navy';     // Set line colour.
         ctx.fillStyle   = 'aqua';     // Set fill colour.
         ctx.lineWidth   = 2;
@@ -735,420 +626,7 @@ function randomIntFromInterval(min, max) { // min and max included
         ctx.stroke();                 // Complete the path by stroking (draw lines).
         ctx.fill();                   // Then fill.
     }
-
-
-
-
     </script>
-
-
-
-
-
-
-
-
-    <style>
-        #main-container{
-           display:flex ;
-           justify-content:center;
-           /*position:relative;*/
-           position:fixed;
-           width:100vw !important;
-        }
-
- .aside{
-    width:100%;
-    background:rgba(0,0,0,0.6) ;
-
-}
-
-.canvas-wrap{
-    background: rgba(0,0,0,0.6);
-    border-radius: 50%;
-    height: 50%;
-    width: 100%;
-}
-
-#canvas{
-
-    position: relative;
-    width: 32vw;
-
-}
-
-
-
-.player-list{
-     position: absolute;
-    height:100% !important;
-    color: red;
-
-    /* top: 0px; */
-    z-index: 1;
-    font-size: 18px;
-    font-family:neon_planetdisplay', Arial, sans-serif;
-    overflow:scroll;
-    /*background:rgba(0,0,0,0.6) !important;*/
-    width:100%;
-}
-
-
-
-
-
-
-
-
-
-
-
-@media screen and (max-width: 750px) {
-  #main-container{
-        display:flex;
-        flex-direction:column;
-        width:100vw;
-    }
-        #main-container :nth-child(1) { order: 2; }
-        #main-container :nth-child(2) { order: 1; }
-        #main-container :nth-child(3) { order: 3; }
-
-  #canvas{
-      width:50vw;
-  }
-
-  .player-list,.player-list2,.player-list>table,.player-list2>table{
-      width:100% !important;
-      left:70px;
-  }
-
-
-
-}
-.player-list2{
-    position: absolute;
-    right: 11%;
-    z-index: 1;
-    color: blue;
-    font-size: 18px;
-    height:100vh !important;
-    overflow:scroll;
-    /*background:rgba(0,0,0,0.6) !important;*
-}
-
-
-
-
-    </style>
 </body>
-<!--   Core JS Files   -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-<script src="{{asset('public/js/jquery-input-mask-phone-number.min.js')}}"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.jqueryui.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.jqueryui.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.flash.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.js"></script>
-
-
-<script src="{{asset('public/js/core/popper.min.js')}}"></script>
-<script src="{{asset('public/js/core/bootstrap.min.js')}}"></script>
-<script src="{{asset('public/newAdmin/js/plugins/perfect-scrollbar.min.js')}}"></script>
-<script src="{{asset('public/newAdmin/js/plugins/smooth-scrollbar.min.js')}}"></script>
-<script src="{{asset('public/newAdmin/js/plugins/chartjs.min.js')}}"></script>
-<script src="{{asset('public/js/core/bootstrap.min.js')}}"></script>
-<!--<script src="{{asset('public/newAdmin/js/argon-dashboard.min.js')}}"></script>-->
-
-<script src="{{asset('js/editable.js')}}"></script>
-
-
-{{-- <script src="../../public/js/core/popper.min.js" type="text/javascript"></script>
-<script src="../../public/js/core/bootstrap.min.js" type="text/javascript"></script>
-<script src="../../public/js/plugins/bootstrap-notify.js"></script>
-<script src="../../public/js/light-bootstrap-dashboard790f.js" type="text/javascript"></script> --}}
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-
-<script src="{{asset('public/js/demo.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script src="{{asset('public/js/table.js')}}"></script>
-
-@if (isset($activeGame) && ($activeGame['image'] != ''))
-  <script>
-    $('.back-image-game').css('background-image',"url('public/uploads/{{$activeGame['image']}}')");
-  </script>
-@else
-  <script>
-    $('.back-image-game').css('background-color','#ffb342');
-  </script>
-@endif
-<script>
-    $(function(){
-        $('#phone-number').usPhoneFormat({
-            format:'xxx-xxx-xxxx'
-        });
-        $('#summernote').summernote();
- $('.select2').select2({
-        // dropdownParent: $('#popup3')
-    });
-    });
-</script>
-@if (session('success'))
-    <script>
-        toastr.success('{{ session('success') }}');
-    </script>
-@endif
-@if (session('error'))
-    @if(is_array(session('error')))
-        @foreach(session('error') as $error)
-            <script>
-            toastr.error(' {{ $error }}');
-            </script>
-        @endforeach
-    @else
-        <script>
-            toastr.error(' {{session('error') }}');
-        </script>
-    @endif
-@endif
-<script>
-    // $(document).ready( function () {
-    //     $('.datatable').DataTable({
-    //         pageLength: 100,
-    //         dom: "<'row'<'col-sm-2'l><'col-sm-7 text-center'B><'col-sm-3'f>>tipr",
-    //         buttons: [
-    //         {
-    //            extend: 'copy',
-    //            className: 'btn-sm btn-info',
-    //            title: 'Gamers',
-    //            header: false,
-    //            footer: true,
-    //            exportOptions: {
-    //               // columns: ':visible'
-    //            }
-    //         },
-    //         {
-    //            extend: 'csv',
-    //            className: 'btn-sm btn-success',
-    //            title: 'Gamers',
-    //            header: false,
-    //            footer: true,
-    //            exportOptions: {
-    //               // columns: ':visible'
-    //            }
-    //         },
-    //         {
-    //            extend: 'excel',
-    //            className: 'btn-sm btn-warning',
-    //            title: 'Gamers',
-    //            header: false,
-    //            footer: true,
-    //            exportOptions: {
-    //               // columns: ':visible',
-    //            }
-    //         },
-    //         {
-    //            extend: 'pdf',
-    //            className: 'btn-sm btn-primary',
-    //            title: 'Gamers',
-    //            pageSize: 'A2',
-    //            header: false,
-    //            footer: true,
-    //            exportOptions: {
-    //               // columns: ':visible'
-    //            }
-    //         },
-    //         {
-    //            extend: 'print',
-    //            className: 'btn-sm btn-success',
-    //            title: 'Gamers',
-    //            // orientation:'landscape',
-    //            pageSize: 'A2',
-    //            header: true,
-    //            footer: false,
-    //            orientation: 'landscape',
-    //            exportOptions: {
-    //               // columns: ':visible',
-    //               stripHtml: false
-    //            }
-    //         }
-    //      ],
-    //     });
-    // } );
-
-</script>
-
-<script>
-
-    jQuery(document).ready( function () {
-
-        $(".jquery-width").css("width","100%");
-
-        var link = $('.delete-form').attr("href");
-        // var link = $('.delete-form');
-                $('.datatable tbody').on('click', '.delete-form', function (e) {
-            e.preventDefault();
-            Swal.fire({
-            title: 'Are you sure you want to delete this?',
-            showDenyButton: true,
-            showCancelButton: true,
-            showConfirmButton: false,
-            // confirmButtonText: 'Save',
-              denyButtonText: `Delete`,
-            }).then((result) => {
-                if (result.isConfirmed) {
-                }
-                else if (result.isDenied) {
-                    var cid = $(this).data('id');
-                    $.ajax({
-                        type: 'get',
-                        url: "/gamers/destroy/"+cid,
-                        data: {
-                            "cid": $(this).data('id'),
-                        },
-                        dataType: 'json',
-                        success: function (data) {
-                            console.log(data);
-                            $('.tr-'+cid).remove();
-                            $( ".count-row" ).each(function( index ) {
-                                $(this).text((index+1));
-                                // console.log( index + ": " + $( this ).text() );
-                            })
-                            toastr.success('Success',"Deleted");
-
-                        },
-                        error: function (data) {
-                            console.log(data);
-                            toastr.error('Error',data.responseText);
-                        }
-                    });
-                    // window.location = link;
-                }
-            });
-        });
-
-        $('.datatable tbody').on('click', '.edit-form', function () {
-            $('.editFormModal').modal('show');
-            var cid = $(this).data('id');
-                    $.ajax({
-                        type: 'get',
-                        url: "/gamers/edit/"+cid,
-                        data: {
-                            "cid": $(this).data('id'),
-                        },
-                        dataType: 'json',
-                        success: function (data) {
-                            // console.log(data);
-                            $('.appendHere').remove();
-                            $('.editFormModalBody').append('<div class="appendHere"></div>');
-                            $('.appendHere').append(data);
-                            // $('#summernote').summernote();
-                            // $( ".count-row" ).each(function( index ) {
-                                // $(this).text((index+1));
-                                // console.log( index + ": " + $( this ).text() );
-                            // })
-                            // toastr.success('Success',"Deleted");
-
-                        },
-                        error: function (data) {
-                            console.log(data);
-                            toastr.error('Error',data.responseText);
-                        }
-                    });
-        });
-
-
-
-   });
-</script>
-<script>
-  x = '<?php echo Carbon\Carbon::now().'   ('.config('app.timezone').')' ?>';
-  console.log(x);
-//   var dateTime = new Date();
-var weekday=new Array(7);
-weekday[0]="Sunday";
-weekday[1]="Monday";
-weekday[2]="Tuesday";
-weekday[3]="Wednesday";
-weekday[4]="Thursday";
-weekday[5]="Friday";
-weekday[6]="Saturday";
-
-
-var monthNames=new Array(7);
-monthNames[0]="January";
-monthNames[1]="February";
-monthNames[2]="March";
-monthNames[3]="April";
-monthNames[4]="May";
-monthNames[5]="June";
-monthNames[6]="July";
-monthNames[7]="August";
-monthNames[8]="September";
-monthNames[9]="October";
-monthNames[10]="November";
-monthNames[11]="December";
-
-  var  dateTime = new Date(x);
-  var dayName = weekday[dateTime.getDay()];
-  var monthName2 = monthNames[dateTime.getMonth()];
-//   console.log(dateTime.getFullYear());
-//   console.log(monthNames[dateTime.getMonth()]);
-     var hour, hourTemp, minute, minuteTemp, second, secondTemp, monthnumber, monthnumberTemp, monthday, monthdayTemp, year, ap;
-     function timefunction() {
-         dateTime.setSeconds(dateTime.getSeconds() + 1, 0);
-         hourTemp = hour = dateTime.getHours();
-
-         minuteTemp = minute = dateTime.getMinutes();
-         if (minute.toString().length == 1)
-             minuteTemp = "0" + minute.toString();
-
-         secondTemp = second = dateTime.getSeconds();
-         if (second.toString().length == 1)
-             secondTemp = "0" + second.toString();
-
-         monthnumberTemp = monthnumber = dateTime.getMonth();
-         if ((monthnumber + 1).toString().length == 1)
-             monthnumberTemp = "0" + (monthnumber + 1).toString();
-
-         monthdayTemp = monthday = dateTime.getDate();
-         if (monthday.toString().length == 1)
-             monthdayTemp = "0" + monthday.toString();
-         year = dateTime.getFullYear();
-         // console.log(dateTime.getYear());
-         ap = "AM";
-         if (hour > 11) { ap = "PM"; }
-         if (hour > 12) { hour = hour - 12; }
-         if (hour == 0) { hour = 12; }
-         if (hour.toString().length == 1)
-             hourTemp = "0" + hour.toString();
-             $('.date-div').text(dayName + ", "+monthdayTemp+" " + monthName2 + "," + year );
-
-
-             $('.date-countdown').text(hourTemp + " : " + minuteTemp + " : " + secondTemp + " " + ap);
-         // document.getElementById('time').innerHTML = monthnumberTemp + "/" + monthdayTemp + "/" + year + " " + hourTemp + ":" + minuteTemp + ":" + secondTemp + " " + ap;
-     }
-     timefunction();
-     setInterval("timefunction()", 1000);
-
-</script>
-@yield('script');
 </html>

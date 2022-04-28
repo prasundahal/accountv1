@@ -78,83 +78,6 @@ class NewHomeController extends Controller
         return view('newLayout.colab', compact('number', 'total', 'title'));
     }
 
-public function tableop()
-{
-    $toSearch = isset($_GET['search']) ? $_GET['search'] : false;
-    $activeGame = isset($_GET['game']) ? $_GET['game'] : '';
-    
-     if (empty($activeGame))
-            {
-                $activeGameDefault = Account::first()->toArray();
-                $activeGame = $activeGameDefault['title'];
-            }
-            if (empty($activeCashApp))
-            {
-                $cash_app_default = CashApp::first()->toArray();
-                $activeCashApp = $cash_app_default['title'];
-            }
-            $cashApp = CashApp::where([['status', 'active']])->get()
-                ->toArray();
-
-            $activeCashApp = CashApp::where([['title', $activeCashApp], ['status', 'active']])->first()
-                ->toArray();
-    
-    $activeGame = Account::where([['title', $activeGame], ['status', 'active']])->with('formGames')
-                ->first()
-                ->toArray();
-    
-    // $activeGame = Account::where([['title', $activeGame], ['status', 'active']])->with('formGames')
-    //             ->first()   
-    //             ->toArray();
-                
-                
-            // dd($activeGame['form_games']);
-            
-           
-
-            $final = [];
-            if (!empty($activeGame['form_games']))
-            {
-                foreach ($activeGame['form_games'] as $a => $b)
-                {
-                    $tip = FormTip::where('form_id', $b['form']['id'])->where('account_id', $activeGame['id'])->sum('amount');
-                    $refer = FormRefer::where('form_id', $b['form']['id'])->where('account_id', $activeGame['id'])->sum('amount');
-                    $cash = CashAppForm::where('form_id', $b['form']['id'])->where('cash_app_id', $activeCashApp['id'])->where('account_id', $activeGame['id'])->sum('amount');
-                    $balance = FormBalance::where('form_id', $b['form']['id'])->where('account_id', $activeGame['id'])->sum('amount');
-                    $redeem = FormRedeem::where('form_id', $b['form']['id'])->where('account_id', $activeGame['id'])->sum('amount');
-                    $b['cash_app'] = $cash;
-                    $b['tip'] = $tip;
-                    $b['refer'] = $refer;
-                    $b['balance'] = $balance;
-                    $b['redeem'] = $redeem;
-                    array_push($final, $b);
-                }
-                $activeGame['form_games'] = $final;
-                $responselist=[];
-                
-                foreach ($activeGame['form_games'] as $formgame=>$value) {
-                    $userArray=$value['form'];
-                    $name=$userArray['facebook_name'];
-                    
-                    $name=strtoupper($name);
-                    $toSearch=strtoupper($toSearch);
-                    
-                    if (strpos($name, $toSearch)) {
-                        array_push($responselist,$value);
-                    }
-                }
-                
-                $activeGame['form_games']=$responselist;
-               //print_r($activeGame['form_games']);
-                header('Content-Type: application/json; charset=utf-8');
-                echo json_encode($activeGame['form_games']);
-                die();
-            }
-           
-    
-}
-
-
     public function editColab($id)
     {
         $form = FormNumber::where('id', $id)->first();
@@ -505,41 +428,43 @@ public function tableop()
 
     public function table()
     {
-        try {
-            $forms = Form::orderBy('full_name', 'asc')->get()->toArray();
+        try
+        {
+            $forms = Form::orderBy('full_name', 'asc')->get()
+                ->toArray();
             //  dd($forms);
-            $games = Account::where('status', 'active')->get()->toArray();
+            $games = Account::where('status', 'active')->get()
+                ->toArray();
 
             $activeGame = isset($_GET['game']) ? $_GET['game'] : '';
             $activeCashApp = isset($_GET['cash_app']) ? $_GET['cash_app'] : '';
 
-
-
-            if (empty($activeGame)) {
+            if (empty($activeGame))
+            {
                 $activeGameDefault = Account::first()->toArray();
                 $activeGame = $activeGameDefault['title'];
             }
-            if (empty($activeCashApp)) {
+            if (empty($activeCashApp))
+            {
                 $cash_app_default = CashApp::first()->toArray();
                 $activeCashApp = $cash_app_default['title'];
             }
 
-            $activeGame = Account::where([['title', $activeGame], ['status', 'active']])
-                ->with('formGames')
+            $activeGame = Account::where([['title', $activeGame], ['status', 'active']])->with('formGames')
                 ->first()
                 ->toArray();
             // dd($activeGame);
-            $cashApp = CashApp::where([['status', 'active']])
-                ->get()
+            $cashApp = CashApp::where([['status', 'active']])->get()
                 ->toArray();
 
-            $activeCashApp = CashApp::where([['title', $activeCashApp], ['status', 'active']])
-                ->first()
+            $activeCashApp = CashApp::where([['title', $activeCashApp], ['status', 'active']])->first()
                 ->toArray();
 
             $final = [];
-            if (!empty($activeGame['form_games'])) {
-                foreach ($activeGame['form_games'] as $a => $b) {
+            if (!empty($activeGame['form_games']))
+            {
+                foreach ($activeGame['form_games'] as $a => $b)
+                {
                     $tip = FormTip::where('form_id', $b['form']['id'])->where('account_id', $activeGame['id'])->sum('amount');
                     $refer = FormRefer::where('form_id', $b['form']['id'])->where('account_id', $activeGame['id'])->sum('amount');
                     $cash = CashAppForm::where('form_id', $b['form']['id'])->where('cash_app_id', $activeCashApp['id'])->where('account_id', $activeGame['id'])->sum('amount');
@@ -554,28 +479,22 @@ public function tableop()
                 }
                 $activeGame['form_games'] = $final;
             }
-            $history = History::where('account_id', $activeGame['id'])
-                ->where('created_by', Auth::user()->id)
+            $history = History::where('account_id', $activeGame['id'])->where('created_by', Auth::user()
+                ->id)
                 ->with('form')
-                ->with('account')
-                ->with(['formGames' => function ($query) use ($activeGame) {
-                    $query->where('account_id', $activeGame['id']);
-                }])
-
-                ->orderBy('id', 'desc')
+                ->with('account')->with(['formGames' => function ($query) use ($activeGame)
+            {
+                $query->where('account_id', $activeGame['id']);
+            }
+            ])
+->orderBy('id', 'desc')
                 ->get()
                 ->toArray();
             // dd($activeCashApp);
-
-            return view('newLayout.table', compact(
-                'forms',
-                'games',
-                'activeGame',
-                'history',
-                'activeCashApp',
-                'cashApp'
-            ));
-        } catch (\Exception $e) {
+            return view('newLayout.table', compact('forms', 'games', 'activeGame', 'history', 'activeCashApp', 'cashApp'));
+        }
+        catch(\Exception $e)
+        {
             $bug = $e->getMessage();
             dd($bug);
             return Response::json(['error' => $bug], 404);

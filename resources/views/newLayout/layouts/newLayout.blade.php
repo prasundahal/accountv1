@@ -8,20 +8,20 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') - Noor Games </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  
+
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
-    <link href="{{asset('public/newAdmin/css/nucleo-icons.css')}}" rel="stylesheet" />
-    <link href="{{asset('public/newAdmin/css/nucleo-svg.css')}}" rel="stylesheet" />
+    <link href="{{asset('newAdmin/css/nucleo-icons.css')}}" rel="stylesheet" />
+    <link href="{{asset('newAdmin/css/nucleo-svg.css')}}" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="{{asset('newAdmin/css/nucleo-svg.css')}}" rel="stylesheet" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="{{asset('public/newAdmin/css/argon-dashboard.css')}}" rel="stylesheet" />
+    <link id="pagestyle" href="{{asset('/newAdmin/css/argon-dashboard.css')}}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.jqueryui.css" /> 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.jqueryui.css" /> 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.jqueryui.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.jqueryui.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/digital-7-mono" rel="stylesheet">
@@ -31,7 +31,7 @@
          display: none!important;
        }
     </style>
- 
+
 
     </head>
 
@@ -42,7 +42,7 @@
           <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href="# " target="_blank">
-      
+
               <span class="ms-1 font-weight-bold">Noor Game </br> {{ auth()->user()->name }}</span>
             </a>
           </div>
@@ -68,7 +68,7 @@
               <li class="nav-item">
                 <a class="nav-link {{ (request()->segment(1) == 'all-history') ? 'active' : '' }}" href="{{route('all-history')}}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="fa fa-history text-warning text-sm opacity-10"></i>
+                    <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
                   </div>
                   <span class="nav-link-text ms-1">All History</span>
                 </a>
@@ -76,24 +76,15 @@
               <li class="nav-item">
                 <a class="nav-link {{ (request()->segment(1) == 'todays-history') ? 'active' : '' }}" href="{{route('todays-history')}}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="fa fa-history text-warning text-sm opacity-10"></i>
+                    <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
                   </div>
                   <span class="nav-link-text ms-1">Todays History</span>
-                </a>
-              </li>
-              
-              <li class="nav-item">
-                <a class="nav-link {{ (request()->segment(1) == 'monthly-history') ? 'active' : '' }}" href="{{route('monthlyHistory')}}">
-                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="fa fa-history text-warning text-sm opacity-10"></i>
-                  </div>
-                  <span class="nav-link-text ms-1">Monthly History</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link {{ (request()->segment(1) == 'games') ? 'active' : '' }}" href="{{route('games')}}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="fa fa-chess-rook text-warning text-sm opacity-10"></i>
+                    <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
                   </div>
                   <span class="nav-link-text ms-1">Games</span>
                 </a>
@@ -101,7 +92,7 @@
               <li class="nav-item">
                 <a class="nav-link {{ (request()->segment(1) == 'gamers') ? 'active' : '' }}" href="{{route('gamers')}}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="fa fa-gamepad text-warning text-sm opacity-10"></i>
+                    <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
                   </div>
                   <span class="nav-link-text ms-1">Gamers</span>
                 </a>
@@ -131,23 +122,7 @@
                     <span class="nav-link-text ms-1">Colab</span>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link {{ (request()->segment(1) == 'login-logs') ? 'active' : '' }}" href="{{route('loginLogs')}}">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                      <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Login Logs</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link {{ (request()->segment(1) == 'game-data') ? 'active' : '' }}" href="{{route('gameData')}}">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                      <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Game Data</span>
-                  </a>
-                </li>
-                
+
               @endif
               <li class="nav-item">
                 <a class="nav-link {{ (request()->segment(2) == 'spinner') ? 'active' : '' }}" href="{{route('spinner')}}">
@@ -169,7 +144,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('logout') }}" >
+                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" >
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="fa fa-power-off text-dark text-sm opacity-10"></i>
                   </div>
@@ -179,7 +154,7 @@
                   @csrf
               </form>
               </li>
-              
+
             </ul>
           </div>
           <style>
@@ -194,26 +169,27 @@
             .count-div{
               background: #ffd9a2;
             }
-            
+
           </style>
-           <div class="count-div p-3 text-center di">
-            <p>Logged in Since : {{ ((session()->get('log_in_time')))?session()->get('log_in_time'):'' }}</p>
-            <a class="nav-link d-flex justify-content-center" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" >
-              <div class="border-radius-md d-flex">
-                <i class="fa fa-power-off text-dark text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Logout</span>
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-              @csrf
-          </form>
-          </div>
-           <div class="count-div p-3 text-center">
+          <div class="count-div p-3 text-center">
+                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" >
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-power-off text-dark text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Logout</span>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+              </form>
             <p class="date-div"></p>
             <p class="date-countdown"></p>
           </div>
-          
-          
+
+          <div class="count-div p-3 text-center">
+            <p>Logged in Since : {{ ((session()->get('log_in_time')))?session()->get('log_in_time'):'' }}</p>
+
+          </div>
+
         </aside>
         <main class="main-content position-relative border-radius-lg ">
           <!-- Navbar -->
@@ -226,15 +202,15 @@
                 </ol>
                 <h6 class="font-weight-bolder text-white mb-0">@yield('title')</h6>
               </nav>
-            
+
            <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                  <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                   <div class="input-group">
-            
+
                   </div>
                 </div>
                 <ul class="navbar-nav  justify-content-end">
-                  
+
                   <li class="nav-item {{(request()->segment(1) == 'table')?'':'d-xl-none'}} ps-3 d-flex align-items-center">
                     <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
                       <div class="sidenav-toggler-inner">
@@ -244,13 +220,13 @@
                       </div>
                     </a>
                   </li>
-                 
+
                 </ul>
               </div>
-      
-             
-            
-              
+
+
+
+
             </div>
           </nav>
           <!-- End Navbar -->
@@ -271,16 +247,15 @@
                   </div>
               </div>
             </footer>
-         
+
       </div>
          </main>
-    </body> 
+    </body>
 
 <!--   Core JS Files   -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-<script src="{{asset('public/js/jquery-input-mask-phone-number.min.js')}}"></script>
+<script src="{{asset('js/jquery-input-mask-phone-number.min.js')}}"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
 
@@ -292,6 +267,7 @@
 
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.js"></script>
 <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/vfs_fonts.js"></script>
@@ -302,16 +278,16 @@
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.flash.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.js"></script> 
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.js"></script>
 
 
-<script src="{{asset('public/js/core/popper.min.js')}}"></script>
-<script src="{{asset('public/js/core/bootstrap.min.js')}}"></script>
-<script src="{{asset('public/newAdmin/js/plugins/perfect-scrollbar.min.js')}}"></script>
-<script src="{{asset('public/newAdmin/js/plugins/smooth-scrollbar.min.js')}}"></script>
-<script src="{{asset('public/newAdmin/js/plugins/chartjs.min.js')}}"></script>
-<script src="{{asset('public/js/core/bootstrap.min.js')}}"></script>
-<!--<script src="{{asset('public/newAdmin/js/argon-dashboard.min.js')}}"></script>-->
+<script src="{{asset('/js/core/popper.min.js')}}"></script>
+<script src="{{asset('/js/core/bootstrap.min.js')}}"></script>
+<script src="{{asset('/newAdmin/js/plugins/perfect-scrollbar.min.js')}}"></script>
+<script src="{{asset('/newAdmin/js/plugins/plugins/smooth-scrollbar.min.js')}}"></script>
+<script src="{{asset('/newAdmin/js/plugins/plugins/chartjs.min.js')}}"></script>
+<script src="{{asset('/js/core/bootstrap.min.js')}}"></script>
+<script src="{{asset('/newAdmin/js/argon-dashboard.min.js')}}"></script>
 
 <script src="{{asset('js/editable.js')}}"></script>
 
@@ -322,13 +298,13 @@
 <script src="../../public/js/light-bootstrap-dashboard790f.js" type="text/javascript"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-<script src="{{asset('public/js/demo.js')}}"></script>
+<script src="{{asset('/js/demo.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script src="{{asset('public/js/table.js')}}"></script>
+<script src="{{asset('/js/table.js')}}"></script>
 
 @if (isset($activeGame) && ($activeGame['image'] != ''))
   <script>
-    $('.back-image-game').css('background-image',"url('public/uploads/{{$activeGame['image']}}')");
+    $('.back-image-game').css('background-image',"url('/uploads/{{$activeGame['image']}}')");
   </script>
 @else
   <script>
@@ -342,7 +318,7 @@
         });
         $('#summernote').summernote();
  $('.select2').select2({
-        // dropdownParent: $('#popup3')
+        dropdownParent: $('#popup3')
     });
     });
 </script>
@@ -358,7 +334,7 @@
             toastr.error(' {{ $error }}');
             </script>
         @endforeach
-    @else    
+    @else
         <script>
             toastr.error(' {{session('error') }}');
         </script>
@@ -428,11 +404,11 @@
     //      ],
     //     });
     // } );
-    
+
 </script>
-  
+
 <script>
-    
+
     jQuery(document).ready( function () {
 
         $(".jquery-width").css("width","100%");
@@ -450,7 +426,7 @@
               denyButtonText: `Delete`,
             }).then((result) => {
                 if (result.isConfirmed) {
-                } 
+                }
                 else if (result.isDenied) {
                     var cid = $(this).data('id');
                     $.ajax({
@@ -468,7 +444,7 @@
                                 // console.log( index + ": " + $( this ).text() );
                             })
                             toastr.success('Success',"Deleted");
-                            
+
                         },
                         error: function (data) {
                             console.log(data);
@@ -479,7 +455,7 @@
                 }
             });
         });
-      
+
         $('.datatable tbody').on('click', '.edit-form', function () {
             $('.editFormModal').modal('show');
             var cid = $(this).data('id');
@@ -491,7 +467,7 @@
                         },
                         dataType: 'json',
                         success: function (data) {
-                             console.log(data);
+                            // console.log(data);
                             $('.appendHere').remove();
                             $('.editFormModalBody').append('<div class="appendHere"></div>');
                             $('.appendHere').append(data);
@@ -501,7 +477,7 @@
                                 // console.log( index + ": " + $( this ).text() );
                             // })
                             // toastr.success('Success',"Deleted");
-                            
+
                         },
                         error: function (data) {
                             console.log(data);
@@ -509,9 +485,9 @@
                         }
                     });
         });
-     
-   
-   
+
+
+
    });
 </script>
 <script>
@@ -577,7 +553,7 @@ monthNames[11]="December";
              hourTemp = "0" + hour.toString();
              $('.date-div').text(dayName + ", "+monthdayTemp+" " + monthName2 + "," + year );
 
-             
+
              $('.date-countdown').text(hourTemp + " : " + minuteTemp + " : " + secondTemp + " " + ap);
          // document.getElementById('time').innerHTML = monthnumberTemp + "/" + monthdayTemp + "/" + year + " " + hourTemp + ":" + minuteTemp + ":" + secondTemp + " " + ap;
      }

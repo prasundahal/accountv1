@@ -6,7 +6,6 @@ use App\Http\Controllers\FormController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\FormNumberConroller;
 use App\Http\Controllers\FrontController;
-use App\Http\Controllers\SpinnerWinnerController;
 use App\Http\Controllers\Admin\CashAppController;
 use App\Http\Controllers\Cashier\CashierController;
 use App\Http\Controllers\Admin\AdminController;
@@ -14,6 +13,7 @@ use App\Http\Controllers\Admin\FrontendSettingController;
 
 
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\SearchTableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,13 +80,6 @@ Route::get('forms/edit/{id}', [FormController::class, 'edit'])->name('forms.edit
 Route::post('saveNoteForm', [FormController::class, 'saveNote'])->name('forms.saveNoteForm');
 Route::get('forms/destroy/{id}', [FormController::class, 'destroy'])->name('forms.destroy');
 
-//prasun
-
-Route::resource('spinners', SpinnerWinnerController::class);
-Route::get('spinners/index', [SpinnerWinnerController::class, 'index'])->name('spinners.index');
-Route::get('spinners/edit/{id}', [SpinnerWinnerController::class, 'edit'])->name('spinners.edit');
-Route::post('saveNoteForm', [SpinnerWinnerController::class, 'saveNote'])->name('spinners.saveNoteForm');
-Route::get('spinners/destroy/{id}', [SpinnerWinnerController::class, 'destroy'])->name('spinners.destroy');
 
 // Route::get('/new-home', [App\Http\Controllers\HomeController::class, 'new-index'])->name('new-home');
 Route::resource('/imageupload',ImageController::class);
@@ -105,9 +98,7 @@ Route::post('colab/update/', [FormNumberConroller::class, 'update'])->name('cola
 Route::get('/deleted-players',[App\Http\Controllers\HomeController::class, 'deletedPlayers'])->name('deleted.players');
 Route::get('players/restore/{id}', [FormController::class, 'restorePlayers'])->name('forms.restore');
 Route::get('players/fdestroy/{id}', [FormController::class, 'forceDeletePlayers'])->name('forms.fdestroy');
-// mycode
 
-Route::get('/table3', [App\Http\Controllers\NewHomeController::class, 'tableop'])->name('tableop');
 Route::get('/dashboard', [App\Http\Controllers\NewHomeController::class, 'dashboard'])->name('dashboard');
 Route::post('/change-color', [App\Http\Controllers\NewHomeController::class, 'changeColor'])->name('change-color');
 Route::get('/gamers', [App\Http\Controllers\NewHomeController::class, 'gamers'])->name('gamers');
@@ -122,6 +113,10 @@ Route::post('/gamers/update-balance', [App\Http\Controllers\NewHomeController::c
 
 Route::get('/spinner', [App\Http\Controllers\NewHomeController::class, 'spinner'])->name('spinner');
 Route::get('/spinner/form/{token}', [App\Http\Controllers\NewHomeController::class, 'spinnerForm'])->name('spinnerForm');
+
+//test routes
+Route::get('table3', [SearchTableController::class, 'table'])->name('testTableRoute');
+Route::post('table3', [SearchTableController::class, 'table'])->name('testTableRoute');
 
 Route::get('/table', [App\Http\Controllers\NewHomeController::class, 'table'])->name('table');
 Route::post('/table-loadBalance', [App\Http\Controllers\NewHomeController::class, 'tableUpdate'])->name('tableUpdate');
