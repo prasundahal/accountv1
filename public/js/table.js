@@ -1361,6 +1361,7 @@ $(document).ready(function() {
                             toastr.success('Balance Loaded to User : ' + user);
 
                             $('.amount').val('');
+                             $('.loadInput').val('');
 
                             // optionLoop = '';
                             // options = data;
