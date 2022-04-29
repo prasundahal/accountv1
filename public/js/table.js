@@ -1362,6 +1362,9 @@ $(document).ready(function() {
 
                             $('.amount').val('');
                              $('.loadInput').val('');
+                             $('.referInput').val('');
+                             $('.redeemInput').val('');
+                             $('.tipInput').val('');
 
                             // optionLoop = '';
                             // options = data;
