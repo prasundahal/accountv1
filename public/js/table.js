@@ -2130,54 +2130,6 @@ $(document).ready(function() {
             });
         });
 
-    $('.this-day-game-history').on('click', function(e) {
-        var year = $(this).attr("data-year");
-        var month = $(this).attr("data-month");
-        var day = $(this).attr("data-day");
-        var game = $(this).attr("data-game");
-        $('.history-type-change-btn-allDate').attr('data-day',day);
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        var actionType = "POST";
-        var ajaxurl = '/this-day-game-history';
-        $.ajax({
-            type: actionType,
-            url: ajaxurl,
-            data: {
-                "year": year,
-                "month": month,
-                "day": day,
-                "game": game,
-            },
-            dataType: 'json',
-            beforeSend: function() {
-    
-            },
-            success: function(data) {
-                if (data != '') {
-                    optionLoop = '';
-                    options = data;
-                    var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                    options.forEach(function(index) {
-                        var date_format = new Date(index.created_at);
-                        var a = date_format.getDate() + ' ' + monthShortNames[date_format.getMonth()] + ', ' + date_format.getFullYear()+' '+date_format.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-                        optionLoop +=
-                            '<tr><td class="text-center">' + a + '</td><td class="text-center"><span class="badge  bg-gradient-success"> ' + index.amount_loaded + '$</span></td><td class="text-center">' + ((index.type == 'refer')?'bonus':index.type)  + '</td><td class="text-center">' + index.created_by.name + '</td></tr>';
-                    });
-                } else {
-                    optionLoop = '<tr><td>No History</td></tr>';
-                }
-                $(".user-history-body").html(optionLoop);
-    
-            },
-            error: function(data) {
-                toastr.error('Error', data.responseText);
-            }
-        });
-    });
         $(function() {
             $('.history-type-change-btn-allDate').on('click', function(e) {
                 // $('.user-current-game-history-input').val($(this).data('type'));

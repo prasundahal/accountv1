@@ -212,7 +212,7 @@ tr:nth-child(odd) {
                         $current_month = $i;
                      @endphp
                   @endif
-                        <a href="{{'/game-data?year='.$year.'&month='.$m}}" class="btn btn-success w-100 mb-1 {{($z == $m)?'active-game-btn':''}}"
+                        <a href="{{route('gameData').'?year='.$year.'&month='.$m}}" class="btn btn-success w-100 mb-1 {{($z == $m)?'active-game-btn':''}}"
                            >
                         {{$i}}
                         </a>
@@ -226,7 +226,7 @@ tr:nth-child(odd) {
    <div class="col-md-12 card upCard">
       <div class="card-body">
          <div class="row">
-             @foreach($grouped as $m => $i) 
+            @foreach($grouped as $m => $i) 
                <div class="col-2 game-head-btn-div">
                   @if($month == $m)
                       @if($month < 10)
@@ -238,12 +238,12 @@ tr:nth-child(odd) {
                         $current_month = $all_months[$z];
                      @endphp
                   @endif
-                        <a href="{{'/game-data?year='.$year.'&month='.$month.'&day='.$m}}" class="btn btn-success w-100 mb-1 {{($day == $m)?'active-game-btn':''}}"
-                           >
-                           {{$current_month.' '.$m}}
-                        </a>
-            </div>
-                     @endforeach
+                     <a href="{{route('gameData').'?year='.$year.'&month='.$month.'&day='.$m}}" class="btn btn-success w-100 mb-1 {{($day == $m)?'active-game-btn':''}}"
+                        >
+                        {{$current_month.' '.$m}}
+                     </a>
+               </div>
+            @endforeach
          </div>
       </div>
    </div>
@@ -382,3 +382,55 @@ tr:nth-child(odd) {
 </div>
 @endsection
 
+@section('script')
+<script>
+   $('.this-day-game-history').on('click', function(e) {
+        var year = $(this).attr("data-year");
+        var month = $(this).attr("data-month");
+        var day = $(this).attr("data-day");
+        var game = $(this).attr("data-game");
+        $('.history-type-change-btn-allDate').attr('data-day',day);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var actionType = "POST";
+        var ajaxurl = "{{route('thisDayGame')}}";
+        $.ajax({
+            type: actionType,
+            url: ajaxurl,
+            data: {
+                "year": year,
+                "month": month,
+                "day": day,
+                "game": game,
+            },
+            dataType: 'json',
+            beforeSend: function() {
+    
+            },
+            success: function(data) {
+                if (data != '') {
+                    optionLoop = '';
+                    options = data;
+                    var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                    options.forEach(function(index) {
+                        var date_format = new Date(index.created_at);
+                        var a = date_format.getDate() + ' ' + monthShortNames[date_format.getMonth()] + ', ' + date_format.getFullYear()+' '+date_format.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+                        optionLoop +=
+                            '<tr><td class="text-center">' + a + '</td><td class="text-center"><span class="badge  bg-gradient-success"> ' + index.amount_loaded + '$</span></td><td class="text-center">' + ((index.type == 'refer')?'bonus':index.type)  + '</td><td class="text-center">' + index.created_by.name + '</td></tr>';
+                    });
+                } else {
+                    optionLoop = '<tr><td>No History</td></tr>';
+                }
+                $(".user-history-body").html(optionLoop);
+    
+            },
+            error: function(data) {
+                toastr.error('Error', data.responseText);
+            }
+        });
+    });
+</script>
+@endsection
