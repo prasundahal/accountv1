@@ -115,8 +115,8 @@ Route::get('/spinner', [App\Http\Controllers\NewHomeController::class, 'spinner'
 Route::get('/spinner/form/{token}', [App\Http\Controllers\NewHomeController::class, 'spinnerForm'])->name('spinnerForm');
 
 //updated Route by Ameer Bajracharya
-Route::get('/table', [SearchTableController::class, 'table'])->name('table');
-Route::post('/table', [SearchTableController::class, 'table'])->name('table.search');
+Route::get('/table', [SearchTableController::class, 'table'])->name('table')->middleware('auth');
+Route::post('/table', [SearchTableController::class, 'table'])->name('table.search')->middleware('auth');
 
 Route::post('/table-loadBalance', [App\Http\Controllers\NewHomeController::class, 'tableUpdate'])->name('tableUpdate');
 Route::post('/table-loadCashBalance', [App\Http\Controllers\NewHomeController::class, 'loadCashBalance'])->name('loadCashBalance');
