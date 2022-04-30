@@ -32,4 +32,13 @@ class FormGame extends Model
         return $this->hasOne(Account::class,'id','account_id');
     }
 
+    public function scopeKeywordSearch($query, $searchTerm)
+    {
+        return $query
+        ->where('game_id', 'LIKE', "%" . $searchTerm . "%")
+        ->orWhereHas('form', function ($q) use($searchTerm) {
+            $q->where('facebook_name', 'like', '%' . $searchTerm . '%');
+        });
+    }
+
 }

@@ -81,9 +81,7 @@ class SearchTableController extends Controller
             // dd($activeCashApp);
             if ($request->ajax()) {
                 if(strlen($request->value) > 3){
-                    $formGames = $formGames->orWhereHas('form', function ($q) use($request) {
-                        $q->where('facebook_name', 'like', '%' . $request->value . '%');
-                    })->orWhere('game_id', 'LIKE', "%" . $request->value . "%")->paginate(10);
+                    $formGames = $formGames->keywordSearch($request->value)->paginate(10);
                 }else{
                     $formGames = $formGames->paginate(10);
                 }
