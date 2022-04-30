@@ -67,7 +67,7 @@ class NewHomeController extends Controller
         // dd($total);
         return view('newLayout.dashboard', compact('total', 'formCount', 'games'));
         // return view('new.dashboard',compact('total'));
-        
+
     }
 
     public function colab()
@@ -163,13 +163,13 @@ class NewHomeController extends Controller
             $delete_form_balance = FormBalance::where('form_id', $id)->delete();
             return Response::json('true');
             // return redirect(route('gamers'))->with('success', " Gamer Deleted Succesfully");
-            
+
         }
         else
         {
             return Response::json(['error' => $bug], 404);
             // return redirect(route('gamers'))->with('error', $form);
-            
+
         }
     }
     public function gamerRestore($id)
@@ -194,7 +194,7 @@ class NewHomeController extends Controller
         //     return Response::json(['error' => $bug],404);
         //     // return redirect(route('gamers'))->with('error', $form);
         // }
-        
+
     }
 
     public function gamerEdit($id)
@@ -203,7 +203,7 @@ class NewHomeController extends Controller
         $html = view('new.gamerEditModal', compact('form'))->render();
         return Response::json($html);
         // return view('new.gamers-edit', compact('form'));
-        
+
     }
 
     public function gamerUpdate(Request $request, $id)
@@ -247,19 +247,19 @@ class NewHomeController extends Controller
             $bug = $e->getMessage();
             return Response::json(['error' => $bug], 404);
             // return redirect(route('gamers'))->with('error', $bug);
-            
+
         }
         if ($form->save() == true)
         {
             return Response::json($form);
             // return redirect(route('gamerEdit',['id' => $request->id]))->with('success', "Updated Successfully");
-            
+
         }
         else
         {
             return Response::json(['error' => $form], 404);
             // return redirect(route('gamerEdit',['id' => $request->id]))->with('error', $form);
-            
+
         }
     }
 
@@ -382,10 +382,10 @@ class NewHomeController extends Controller
                     }
                 }
                 // if(){
-                    
+
                 // }
                 $shuffle = array_rand($final['players_list']);
-                
+
                 $final['winner_info'] =[
                     'player_name' => $final['players_list'][$shuffle]['player_name'],
                     'player_id' =>  $final['players_list'][$shuffle]['player_id']
@@ -410,7 +410,7 @@ class NewHomeController extends Controller
                             'player_id' =>  $prasun['id']
                         ];
                     }
-                    
+
                 }
                 //prasun dahal
             }
@@ -574,7 +574,7 @@ class NewHomeController extends Controller
                     if (!empty($form['email']))
                     {
                         // Mail::to($form['email'])->send(new crossedPlayers(json_encode($form)));
-                        
+
                     }
                     // if(!empty($form['phone'])){
                     $boyname = $form['full_name'];
@@ -621,7 +621,7 @@ class NewHomeController extends Controller
 
         $accountBalance = $account->balance;
         // $userBalance = $user->balance;
-        
+
 
         $account = Account::where('id', $gameId)->update(['balance' => ($accountBalance - $amount) ]);
 
@@ -660,7 +660,7 @@ class NewHomeController extends Controller
 
         $cashAppBalance = $cashApp->balance;
         // $userBalance = $user->balance;
-        
+
 
         $updateCashApp = CashApp::where('id', $cashAppId)->update(['balance' => ($cashAppBalance + $amount) ]);
 
@@ -798,7 +798,7 @@ class NewHomeController extends Controller
             ->whereHas('account')
         // ->whereBetween('created_at', [Carbon::now()->subMinutes(1440), now()])
         // ->with('created_by')
-        
+
             ->orderBy('id', 'desc')
             ->get()
             ->toArray();
@@ -835,7 +835,7 @@ class NewHomeController extends Controller
         Mail::to('prasundahal@gmail.com')->send(new reportMail(json_encode($details)));
         Mail::to('joshibipin2052@gmail.com')->send(new reportMail(json_encode($details)));
         // return view('mails.report',compact('details'));
-        
+
     }
     function totals()
     {
@@ -877,7 +877,7 @@ class NewHomeController extends Controller
     public function allHistory1()
     {
 
-        
+
         if (Auth::user()->role == 'admin'){
             $history = History::where('created_by',Auth::user()->id)->orderBy('id', 'desc')->count();
         }else{
@@ -922,7 +922,7 @@ class NewHomeController extends Controller
             }
 
             // $activeGame['form_games'] = $final;
-            
+
         }
         $games = Account::where('status', 'active')->get()
             ->toArray();
@@ -952,7 +952,7 @@ class NewHomeController extends Controller
         $forms = Form::get()->toArray();
         return view('newLayout.history', compact('final', 'total', 'games', 'forms'));
     }
-    
+
     public function thisDayGame(Request $request)
     {
         $year = isset($request->year) ? $request->year : '';
@@ -1120,7 +1120,7 @@ class NewHomeController extends Controller
             }
 
             // return view('newLayout.alldata', compact('grouped', 'month', 'year','total'));
-            
+
         }
         $total = $totals;
         $history = [];
@@ -1148,11 +1148,11 @@ class NewHomeController extends Controller
                 ->whereHas('form')
                 ->with('created_by')
             // ->whereDate('created_at', Carbon::today())
-            
+
                 ->orderBy('created_at', 'asc')
                 ->get()
             // ->groupby('id')
-            
+
                 ->toArray();
             // $visitors = History::select('*')
             //     ->orderBy('created_at')
@@ -1195,7 +1195,7 @@ class NewHomeController extends Controller
 
                     // array_push($final, $b);
                     // array_push($forms, $b['form']);
-                    
+
                 }
             }
 
@@ -1207,7 +1207,7 @@ class NewHomeController extends Controller
             }
 
             // $activeGame['form_games'] = $final;
-            
+
         }
         $games = Account::where('status', 'active')->get()
             ->toArray();
@@ -1251,7 +1251,7 @@ class NewHomeController extends Controller
         $data = [['SN', 'Date', 'FB Name', 'Game', 'Game ID', 'Amount', 'Type', 'Creator']];
         if (($history > 0))
         {
-            
+
             if (Auth::user()->role != 'admin'){
                 $history = History::with('account')->with('form')->whereHas('form')->where('created_by',Auth::user()->id)->orderBy('id', 'desc')->whereDate('created_at', Carbon::today())->with('created_by')->get()->toArray();
             }else{
@@ -1291,7 +1291,7 @@ class NewHomeController extends Controller
             }
 
             // $activeGame['form_games'] = $final;
-            
+
         }
         $games = Account::where('status', 'active')->get()
             ->toArray();
@@ -1341,7 +1341,7 @@ class NewHomeController extends Controller
                 array_push($final, $b);
             }
             // $activeGame['form_games'] = $final;
-            
+
         }
         return Response::json($final);
     }
@@ -1369,7 +1369,7 @@ class NewHomeController extends Controller
                 }
             }
             // $activeGame['form_games'] = $final;
-            
+
         }
         return Response::json($final);
     }
@@ -1674,7 +1674,7 @@ class NewHomeController extends Controller
             return [$data, $totals_2];
             // return Response::json('success');
             // $activeGame['form_games'] = $final;
-            
+
         }
         else
         {
@@ -1763,7 +1763,7 @@ class NewHomeController extends Controller
             }
             $totals['profit'] = $totals['load'] - $totals['redeem'];
             // $activeGame['form_games'] = $final;
-            
+
         }
 
         // $data = [
@@ -1921,7 +1921,7 @@ class NewHomeController extends Controller
                 ->back()
                 ->with('error', $bug);
             // return Response::json(['error' => $bug],404);
-            
+
         }
     }
     public function gameImageStore(Request $request)
@@ -1949,7 +1949,7 @@ class NewHomeController extends Controller
                 ->back()
                 ->with('error', $bug);
             // return Response::json(['error' => $bug],404);
-            
+
         }
     }
     public function gamerGames()
@@ -2010,7 +2010,7 @@ class NewHomeController extends Controller
                     // dd($totals);
                     // array_push($final,$b);
                     // array_push($forms,$b['form']);
-                    
+
                 }
             }
         }
@@ -2033,7 +2033,7 @@ class NewHomeController extends Controller
             $month = date('m');
         }
         if (empty($day))
-        {           
+        {
             // echo 's';
         $history = History::whereDate('created_at', '>=', date($year.'-'.$month.'-01'))
                             ->whereDate('created_at', '<=', date($year.'-'.$month.'-31'))
@@ -2042,14 +2042,14 @@ class NewHomeController extends Controller
             // echo 'no';
             $history = History::whereDate('created_at', '>=', date($year . '-' . $month . '-'.$day))
             ->whereDate('created_at', '<=', date($year . '-' . $month . '-'.$day))
-            ->count();  
+            ->count();
         }
         // dd($month,$history,date($year.'-'.$month.'-01'),date($year.'-'.$month.'-32'));
 
         $grouped = [];
         if (($history > 0)){
             if (empty($day))
-            {           
+            {
                 $history = History::whereHas('form')
                                 ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
                                 ->whereDate('created_at', '<=', date($year . '-' . $month . '-31'))
@@ -2080,14 +2080,14 @@ class NewHomeController extends Controller
                 $created_at = explode('-', date('Y-m-d', strtotime($b['created_at'])));
                 if (!(isset($grouped[$created_at[2]][$b['account_id']])))
                 {
-                    $grouped[$created_at[2]][$b['account_id']] = 
+                    $grouped[$created_at[2]][$b['account_id']] =
                     [
-                        'game_id' => $b['account']['id'], 
-                        'game_name' => $b['account']['name'], 
-                        'game_title' => $b['account']['title'], 
-                        'game_balance' => $b['account']['balance'], 
-                        'histories' => [], 
-                        'totals' => $totals, 
+                        'game_id' => $b['account']['id'],
+                        'game_name' => $b['account']['name'],
+                        'game_title' => $b['account']['title'],
+                        'game_balance' => $b['account']['balance'],
+                        'histories' => [],
+                        'totals' => $totals,
                         'total_transactions' => 0
                     ];
                 }
@@ -2097,12 +2097,12 @@ class NewHomeController extends Controller
                 ($b['type'] == 'redeem') ? ($grouped[$created_at[2]][$b['account_id']]['totals']['redeem'] = $grouped[$created_at[2]][$b['account_id']]['totals']['redeem'] + $b['amount_loaded']) : ($grouped[$created_at[2]][$b['account_id']]['totals']['redeem'] = $grouped[$created_at[2]][$b['account_id']]['totals']['redeem']);
                 ($b['type'] == 'refer') ? ($grouped[$created_at[2]][$b['account_id']]['totals']['refer'] = $grouped[$created_at[2]][$b['account_id']]['totals']['refer'] + $b['amount_loaded']) : ($grouped[$created_at[2]][$b['account_id']]['totals']['refer'] = $grouped[$created_at[2]][$b['account_id']]['totals']['refer']);
                 ($b['type'] == 'cashAppLoad') ? ($grouped[$created_at[2]][$b['account_id']]['totals']['cashAppLoad'] = $grouped[$created_at[2]][$b['account_id']]['totals']['cashAppLoad'] + $b['amount_loaded']) : ($grouped[$created_at[2]][$b['account_id']]['totals']['cashAppLoad'] = $grouped[$created_at[2]][$b['account_id']]['totals']['cashAppLoad']);
-                
+
                 $grouped[$created_at[2]][$b['account_id']]['total_transactions'] = $grouped[$created_at[2]][$b['account_id']]['total_transactions'] + 1;
                 array_push($grouped[$created_at[2]][$b['account_id']]['histories'], $b);
             }
         }else{
-            
+
         }
         $all_months = ['1' => 'January', '2' => 'February', '3' => 'March', '4' => 'April', '5' => 'May', '6' => 'June', '7' => 'July', '8' => 'August', '9' => 'September', '10' => 'October', '11' => 'November', '12' => 'December'];
     //  dd($month);

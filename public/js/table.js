@@ -73,22 +73,19 @@ $(document).ready(function() {
     });
     $(function() {
         $(".search-user").on("keyup", function() {
-            var url  = window.location.href;
+            var url  = window.location.origin + '/table';
             var value = $(this).val().toLowerCase();
-            console.log(value);
-            if(value.length > 3){
-                $.ajax({
-                    url: url,
-                    method: 'post',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    data:{value: value},
-                    success:function(data){
-                        $('.authorTable').html(data)
-                    }
-                })
-            }
+            $.ajax({
+                url: url,
+                method: 'post',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data:{value: value},
+                success:function(data){
+                    $('.authorTable').html(data)
+                }
+            })
             // $("tbody > tr").filter(function() {
             //     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             // });

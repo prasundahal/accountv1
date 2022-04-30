@@ -80,7 +80,13 @@ class SearchTableController extends Controller
             ->toArray();
             // dd($activeCashApp);
             if ($request->ajax()) {
-                $formGames = $formGames->where('game_id', 'like', "%" . $request->value . "%")->paginate(10);
+                if(strlen($request->value) > 3){
+                    $formGames = $formGames->orWhereHas('form', function ($q) use($request) {
+                        $q->where('facebook_name', 'like', '%' . $request->value . '%');
+                    })->orWhere('game_id', 'LIKE', "%" . $request->value . "%")->paginate(10);
+                }else{
+                    $formGames = $formGames->paginate(10);
+                }
                 return view('newLayout.components.listTable', ['activeGame' => $activeGame, 'activeCashApp' => $activeCashApp,'formGames' => $formGames]);
             }else{
                 $formGames = $formGames->paginate(10);
