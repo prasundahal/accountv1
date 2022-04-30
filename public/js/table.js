@@ -823,6 +823,7 @@ $(document).ready(function() {
                             toastr.success('Balance Referred to User : ' + user);
 
                             $('.amount').val('');
+                            $('.referInput').val('');
                             // optionLoop = '';
                             // options = data;
                             // options.forEach(function(index) {
@@ -1361,10 +1362,7 @@ $(document).ready(function() {
                             toastr.success('Balance Loaded to User : ' + user);
 
                             $('.amount').val('');
-                             $('.loadInput').val('');
-                             $('.referInput').val('');
-                             $('.redeemInput').val('');
-                             $('.tipInput').val('');
+                            $('.loadInput').val('');
 
                             // optionLoop = '';
                             // options = data;
@@ -1611,7 +1609,7 @@ $(document).ready(function() {
                         toastr.success('Balance Redeemed for : ' + user);
 
                         $('.amount').val('');
-
+                        $('.redeemInput').val('');
                         // optionLoop = '';
                         // options = data;
                         // options.forEach(function(index) {
@@ -1839,7 +1837,7 @@ $(document).ready(function() {
                         toastr.success('Balance Tipped from : ' + user);
 
                         $('.amount').val('');
-
+                        $('.tipInput').val('');
                         // optionLoop = '';
                         // options = data;
                         // options.forEach(function(index) {
