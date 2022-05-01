@@ -2144,10 +2144,12 @@ $(document).ready(function() {
         });
 
     $('.this-day-history').on('click', function(e) {
+        var month_symbols = ['','January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
         var year = $(this).attr("data-year");
         var month = $(this).attr("data-month");
         var day = $(this).attr("data-day");
         var category = $(this).attr("data-category");
+        $('h2.popup-title').html('History of '+month_symbols[month]+' '+day+', '+year);
         $('.history-type-change-btn-allDate').attr('data-day',day);
         $('.history-type-change-btn-allDate.game-category').removeClass('active-game-btn');
         $('.history-type-change-btn-allDate.game-type').removeClass('active-game-btn');
@@ -2177,7 +2179,7 @@ $(document).ready(function() {
 
             },
             success: function(data) {
-                var accounts = data.accounts;
+                var accounts = data.accounts;console.log(accounts);
                 var default_accounts = data.default_accounts;
                 $.each($('.history-type-change-btn-allDate.game-category'), function() {
                     var that = $(this);
@@ -2191,7 +2193,7 @@ $(document).ready(function() {
                             <br>Redeem: '+value.totals.redeem+'\
                             <br>Bonus: '+value.totals.refer+'\
                             ');
-                        }else {
+                        } else if(that.siblings('.game-category-info.reset-to-blank').html() == '') {
                             $.each(default_accounts, function(index,value){
                                 if(value.name == that.attr('data-category')) {
                                     that.siblings('.game-category-info.reset-to-blank').html('\
@@ -2212,12 +2214,16 @@ $(document).ready(function() {
                     options = data.grouped;
                     var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                     options.forEach(function(index) {
-                        var date_format = new Date(index.created_at);
+                        var date_format = new Date(index.created_at),
+                            load = index.type == 'load' ? parseInt(index.amount_loaded) : 0,
+                            redeem = index.type == 'redeem' ? parseInt(index.amount_loaded) : 0;
+                            profitLoss = load - redeem;
                         var a = date_format.getDate() + ' ' + monthShortNames[date_format.getMonth()] + ', ' + date_format.getFullYear()+' '+date_format.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
                         optionLoop +=
                             '<tr><td class="text-center">' + a + '</td>\
                             <td class="text-center"><span class="badge  bg-gradient-success"> ' + index.amount_loaded + '$</span></td>\
                             <td class="text-center">' + index.form.facebook_name + '</td>\
+                            <td class="text-center">' + (profitLoss < 0 ? '<span class="badge bg-gradient-warning">'+profitLoss+'$</span>' : '<span class="badge bg-gradient-success">'+profitLoss+'$</span>') + '</td>\
                             <td class="text-center">' + index.account.name + '</td>\
                             <td class="text-center">' + index.form_game.game_id + '</td>\
                             <td class="text-center">' + ((index.type == 'refer')?'bonus':index.type)  + '</td>\
@@ -2372,7 +2378,10 @@ $(document).ready(function() {
                             //     });
                             // }
                             options.forEach(function(index) {
-                                var date_format = new Date(index.created_at);
+                                var date_format = new Date(index.created_at),
+                                    load = index.type == 'load' ? parseInt(index.amount_loaded) : 0,
+                                    redeem = index.type == 'redeem' ? parseInt(index.amount_loaded) : 0;
+                                    profitLoss = load - redeem;
                                 // console.log(new Date(index.created_at));
                                 // console.log(date_format);
                                 var a = date_format.getDate() + ' ' + monthShortNames[date_format.getMonth()] + ', ' + date_format.getFullYear()+' '+date_format.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
@@ -2380,6 +2389,7 @@ $(document).ready(function() {
                                     '<tr><td class="text-center">' + a + '</td>\
                                     <td class="text-center"><span class="badge  bg-gradient-success"> ' + index.amount_loaded + '$</span></td>\
                                     <td class="text-center">' + index.form.facebook_name + '</td>\
+                                    <td class="text-center">' + (profitLoss < 0 ? '<span class="badge bg-gradient-warning">'+profitLoss+'$</span>' : '<span class="badge bg-gradient-success">'+profitLoss+'$</span>') + '</td>\
                                     <td class="text-center">' + index.account.name + '</td>\
                                     <td class="text-center">' + index.form_game.game_id + '</td>\
                                     <td class="text-center">' + ((index.type == 'refer')?'bonus':index.type)  + '</td>\

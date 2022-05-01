@@ -472,7 +472,7 @@ tr:nth-child(odd) {
                         </a>
                            <div id="popup1" class="overlay">
                               <div class="popup" style="width:95%">
-                                 <h2>History</h2>
+                                 <h2 class="popup-title">History</h2>
                                  <a class="close" href="#">&times;</a>
                                  <div class="content ">
                                     <div class="row" style="padding-top:20px;">
@@ -526,6 +526,7 @@ tr:nth-child(odd) {
                                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
                                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
                                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FB Name</th>
+                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Profit / Loss</th>
                                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Game</th>
                                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Game ID</th>
                                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>

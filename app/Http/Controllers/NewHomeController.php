@@ -1078,6 +1078,7 @@ public function tableop()
         $category = isset($request->category) ? $request->category : '';
         $data = ['year' => $year, 'month' => $month, 'day' => $day];
         $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];
+        $account_totals = [];
         $history = History::with('form')
             ->with('created_by')
             ->with('account')
@@ -1096,7 +1097,13 @@ public function tableop()
             $created_at = explode('-', date('Y-m-d', strtotime($b['created_at'])));
             if (($created_at[0] == $year) && ($created_at[1] == $month) && ($created_at[2] == $day) && !empty($form_game))
             {
+                $account_totals[$b['account_id']]['tip'] = isset($account_totals[$b['account_id']]['tip']) ? $account_totals[$b['account_id']]['tip'] : 0;
+                $account_totals[$b['account_id']]['load'] = isset($account_totals[$b['account_id']]['load']) ? $account_totals[$b['account_id']]['load'] : 0;
+                $account_totals[$b['account_id']]['redeem'] = isset($account_totals[$b['account_id']]['redeem']) ? $account_totals[$b['account_id']]['redeem'] : 0;
+                $account_totals[$b['account_id']]['refer'] = isset($account_totals[$b['account_id']]['refer']) ? $account_totals[$b['account_id']]['refer'] : 0;
+                $account_totals[$b['account_id']]['cashAppLoad'] = isset($account_totals[$b['account_id']]['cashAppLoad']) ? $account_totals[$b['account_id']]['cashAppLoad'] : 0;
                 $form_game->toArray();
+
                 $b['form_game'] = $form_game;
                 array_push($grouped, $b);
                 ($b['type'] == 'tip') ? ($totals['tip'] = $totals['tip'] + $b['amount_loaded']) : ($totals['tip'] = $totals['tip']);
@@ -1104,6 +1111,12 @@ public function tableop()
                 ($b['type'] == 'redeem') ? ($totals['redeem'] = $totals['redeem'] + $b['amount_loaded']) : ($totals['redeem'] = $totals['redeem']);
                 ($b['type'] == 'refer') ? ($totals['refer'] = $totals['refer'] + $b['amount_loaded']) : ($totals['refer'] = $totals['refer']);
                 ($b['type'] == 'cashAppLoad') ? ($totals['cashAppLoad'] = $totals['cashAppLoad'] + $b['amount_loaded']) : ($totals['cashAppLoad'] = $totals['cashAppLoad']);
+
+                ($b['type'] == 'tip') ? ($account_totals[$b['account_id']]['tip'] = $account_totals[$b['account_id']]['tip'] + $b['amount_loaded']) : ($account_totals[$b['account_id']]['tip'] = $account_totals[$b['account_id']]['tip']);
+                ($b['type'] == 'load') ? ($account_totals[$b['account_id']]['load'] = $account_totals[$b['account_id']]['load'] + $b['amount_loaded']) : ($account_totals[$b['account_id']]['load'] = $account_totals[$b['account_id']]['load']);
+                ($b['type'] == 'redeem') ? ($account_totals[$b['account_id']]['redeem'] = $account_totals[$b['account_id']]['redeem'] + $b['amount_loaded']) : ($account_totals[$b['account_id']]['redeem'] = $account_totals[$b['account_id']]['redeem']);
+                ($b['type'] == 'refer') ? ($account_totals[$b['account_id']]['refer'] = $account_totals[$b['account_id']]['refer'] + $b['amount_loaded']) : ($account_totals[$b['account_id']]['refer'] = $account_totals[$b['account_id']]['refer']);
+                ($b['type'] == 'cashAppLoad') ? ($account_totals[$b['account_id']]['cashAppLoad'] = $account_totals[$b['account_id']]['cashAppLoad'] + $b['amount_loaded']) : ($account_totals[$b['account_id']]['cashAppLoad'] = $totals['cashAppLoad']);
 
                 if (!(isset($accounts[$b['account_id']])))
                 {
@@ -1117,6 +1130,9 @@ public function tableop()
                         'totals' => $totals, 
                         'total_transactions' => 0
                     ];
+                }
+                if(isset($accounts[$b['account_id']])) {
+                    $accounts[$b['account_id']]['totals'] = $account_totals[$b['account_id']];
                 }
             }
         }
