@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\FrontendSettingController;
 
 
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\SearchTableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,11 +39,11 @@ Route::get('/game/{x}', [FormNumberConroller::class, 'go'])->name('fire.go');
 //formtest route
 Route::get('/ohana',function()
 {
-   return view('test'); 
+    return view('test');
 });
 Route::get('/test1',function()
 {
-   return view('test2'); 
+    return view('test2');
 });
 
 
@@ -63,11 +64,11 @@ Route::get('formsuccess', function () {
 
 Auth::routes([
 
-  'register' => false, // Register Routes...
+    'register' => false, // Register Routes...
 
-  'reset' => false, // Reset Password Routes...
+    'reset' => false, // Reset Password Routes...
 
-  'verify' => false, // Email Verification Routes...
+    'verify' => false, // Email Verification Routes...
 
 ]);
 // Route::get('admin/form/create', [FormController::class, 'create'])->name('forms.create');
@@ -97,9 +98,7 @@ Route::post('colab/update/', [FormNumberConroller::class, 'update'])->name('cola
 Route::get('/deleted-players',[App\Http\Controllers\HomeController::class, 'deletedPlayers'])->name('deleted.players');
 Route::get('players/restore/{id}', [FormController::class, 'restorePlayers'])->name('forms.restore');
 Route::get('players/fdestroy/{id}', [FormController::class, 'forceDeletePlayers'])->name('forms.fdestroy');
-// mycode
 
-Route::get('/table3', [App\Http\Controllers\NewHomeController::class, 'tableop'])->name('tableop');
 Route::get('/dashboard', [App\Http\Controllers\NewHomeController::class, 'dashboard'])->name('dashboard');
 Route::post('/change-color', [App\Http\Controllers\NewHomeController::class, 'changeColor'])->name('change-color');
 Route::get('/gamers', [App\Http\Controllers\NewHomeController::class, 'gamers'])->name('gamers');
@@ -115,7 +114,10 @@ Route::post('/gamers/update-balance', [App\Http\Controllers\NewHomeController::c
 Route::get('/spinner', [App\Http\Controllers\NewHomeController::class, 'spinner'])->name('spinner');
 Route::get('/spinner/form/{token}', [App\Http\Controllers\NewHomeController::class, 'spinnerForm'])->name('spinnerForm');
 
-Route::get('/table', [App\Http\Controllers\NewHomeController::class, 'table'])->name('table');
+//updated Route by Ameer Bajracharya
+Route::get('/table', [SearchTableController::class, 'table'])->name('table')->middleware('auth');
+Route::post('/table', [SearchTableController::class, 'table'])->name('table.search')->middleware('auth');
+
 Route::post('/table-loadBalance', [App\Http\Controllers\NewHomeController::class, 'tableUpdate'])->name('tableUpdate');
 Route::post('/table-loadCashBalance', [App\Http\Controllers\NewHomeController::class, 'loadCashBalance'])->name('loadCashBalance');
 Route::post('/table-referBalance', [App\Http\Controllers\NewHomeController::class, 'referBalance'])->name('referBalance');
@@ -202,7 +204,6 @@ Route::post('colab/update/', [FormNumberConroller::class, 'update'])->name('cola
 
 Route::get('/admin/all_players', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.allplayers')->middleware('admin');
 Route::get('/admin/show-image',[ImageController::class,'showImages'])->name('show.images')->middleware('admin');
-Route::get('/table', [App\Http\Controllers\NewHomeController::class, 'table'])->name('table');
 Route::post('/add-user', [App\Http\Controllers\NewHomeController::class, 'addUser'])->name('addUser');
 
 Route::get('cashier/show_today',[CashierController::class,'showToday'])->name('cashier.showtoday');

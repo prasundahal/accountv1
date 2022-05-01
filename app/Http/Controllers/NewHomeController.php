@@ -1057,10 +1057,12 @@ public function tableop()
         $data = ['year' => $year, 'month' => $month, 'day' => $day];
         foreach ($history as $a => $b)
         {
-            // $form_game = FormGame::where('form_id', $b['form_id'])->where('account_id', $b['account_id'])->first();
+            $form_game = FormGame::where('form_id', $b['form_id'])->where('account_id', $b['account_id'])->first();
             $created_at = explode('-', date('Y-m-d', strtotime($b['created_at'])));
-            if (($created_at[0] == $year) && ($created_at[1] == $month) && ($created_at[2] == $day))
+            if (($created_at[0] == $year) && ($created_at[1] == $month) && ($created_at[2] == $day) && !empty($form_game))
             {
+                $form_game->toArray();
+                $b['form_game'] = $form_game;
                 array_push($grouped, $b);
             }
         }
@@ -1073,20 +1075,27 @@ public function tableop()
         $year = isset($request->year) ? $request->year : '';
         $month = isset($request->month) ? $request->month : '';
         $day = isset($request->day) ? $request->day : '';
+        $category = isset($request->category) ? $request->category : '';
         $data = ['year' => $year, 'month' => $month, 'day' => $day];
-        $history = History::with('account')->with('form')
-            ->whereHas('form')
+        $history = History::with('form')
             ->with('created_by')
+            ->with('account')
+            ->whereHas('account', function ($query) use ($category) {
+                if($category && $category != 'all')
+                return $query->where('name', 'like', $category);
+            })
             ->orderBy('created_at', 'asc')
             ->get()
             ->toArray();
         $grouped = [];
         foreach ($history as $a => $b)
         {
-            // $form_game = FormGame::where('form_id', $b['form_id'])->where('account_id', $b['account_id'])->first();
+            $form_game = FormGame::where('form_id', $b['form_id'])->where('account_id', $b['account_id'])->first();
             $created_at = explode('-', date('Y-m-d', strtotime($b['created_at'])));
-            if (($created_at[0] == $year) && ($created_at[1] == $month) && ($created_at[2] == $day))
+            if (($created_at[0] == $year) && ($created_at[1] == $month) && ($created_at[2] == $day) && !empty($form_game))
             {
+                $form_game->toArray();
+                $b['form_game'] = $form_game;
                 array_push($grouped, $b);
             }
         }
@@ -1099,9 +1108,13 @@ public function tableop()
         $year = isset($request->filter_year) ? $request->filter_year : '';
         $month = isset($request->filter_month) ? $request->filter_month : '';
         $day = isset($request->filter_day) ? $request->filter_day : '';
+        $category = isset($request->filter_category) ? $request->filter_category : '';
 
         $history = History::with('account')->with('form')
-            ->whereHas('form')
+            ->whereHas('account', function ($query) use ($category) {
+                if($category && $category != 'all')
+                return $query->where('name', 'like', $category);
+            })
             ->with('created_by')
             ->orderBy('created_at', 'asc')
             ->get()
@@ -1109,9 +1122,14 @@ public function tableop()
         $grouped = [];
         foreach ($history as $a => $b)
         {
-            // $form_game = FormGame::where('form_id', $b['form_id'])->where('account_id', $b['account_id'])->first();
+            $form_game = FormGame::where('form_id', $b['form_id'])->where('account_id', $b['account_id'])->first();
             $created_at = explode('-', date('Y-m-d', strtotime($b['created_at'])));
             $b['created_at'] = date('Y-m-d', strtotime($b['created_at']));
+            if(!empty($form_game)){
+                $form_game->toArray();
+                $b['form_game'] = $form_game;
+            }
+            
             if ($type == 'all')
             {
                 if (($created_at[0] == $year) && ($created_at[1] == $month) && ($created_at[2] == $day))
@@ -1139,6 +1157,8 @@ public function tableop()
         //get
         $year = isset($_GET['year']) ? $_GET['year'] : '';
         $month = isset($_GET['month']) ? $_GET['month'] : '';
+        $sel_cat = isset($_GET['category']) ? $_GET['category'] : '';
+        $game_categories = Account::select('name')->distinct()->get();
 
         if (empty($year))
         {
@@ -1149,13 +1169,21 @@ public function tableop()
             $month = date('m');
         }
         if (Auth::user()->role != 'admin'){
-            $history = History::where('created_by',Auth::user()->id)
+            $history = History::whereHas('account', function ($query) {
+                                    if(isset($_GET['category']))
+                                    return $query->where('name', 'like', $_GET['category']);
+                                })
+                                ->where('created_by',Auth::user()->id)
                                 ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
                                 ->whereDate('created_at', '<=', date($year . '-' . $month . '-31'))
                                 ->orderBy('id', 'desc')
                                 ->count();
         }else{
-            $history = History::whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
+            $history = History::whereHas('account', function ($query) {
+                                    if(isset($_GET['category']))
+                                    return $query->where('name', 'like', $_GET['category']);
+                                })
+                                ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
                                 ->whereDate('created_at', '<=', date($year . '-' . $month . '-31'))
                                 ->orderBy('id', 'desc')
                                 ->count();
@@ -1165,14 +1193,22 @@ public function tableop()
         if (($history > 0))
         {
                 if (Auth::user()->role != 'admin'){
-                    $history = History::where('created_by',Auth::user()->id)
+                    $history = History::whereHas('account', function ($query) {
+                                    if(isset($_GET['category']))
+                                    return $query->where('name', 'like', $_GET['category']);
+                                })
+                                ->where('created_by',Auth::user()->id)
                                         ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
                                         ->whereDate('created_at', '<=', date($year . '-' . $month . '-31'))
                                         ->orderBy('id', 'desc')
                                         ->get()
                                         ->toArray();
                 }else{
-                    $history = History::whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
+                    $history = History::whereHas('account', function ($query) {
+                                    if(isset($_GET['category']))
+                                    return $query->where('name', 'like', $_GET['category']);
+                                })
+                                ->whereDate('created_at', '>=', date($year . '-' . $month . '-01'))
                                         ->whereDate('created_at', '<=', date($year . '-' . $month . '-31'))
                                         ->orderBy('id', 'desc')
                                         ->get()
@@ -1210,7 +1246,7 @@ public function tableop()
         // dd($grouped,$year,$month,$history,$totals);
         $forms = Form::orderBy('id', 'desc')->get()->toArray();
         $games = Account::orderBy('id', 'desc')->get()->toArray();
-        return view('newLayout.alldata', compact('grouped', 'month', 'year', 'total', 'all_months','forms','games'));
+        return view('newLayout.alldata', compact('grouped', 'month', 'year', 'total', 'all_months','forms','games','game_categories','sel_cat'));
     }
     public function allData1()
     {

@@ -307,11 +307,11 @@ tr:nth-child(odd) {
          <div class="row">
             {{-- @php
             echo $month;
-            @endphp --}}
-            @foreach($all_months as $m => $i) 
+                           @endphp --}}
+                     @foreach($all_months as $m => $i) 
                <div class="col-2 game-head-btn-div">  
                   {{-- @if (isset($games) && !empty($games)) --}}
-                  @if($month < 10)
+                  @if($month < 13)
                      @php
                         $z = str_replace('0','',$month);
                      @endphp
@@ -321,40 +321,32 @@ tr:nth-child(odd) {
                         $current_month = $i;
                      @endphp
                   @endif
-                  <a href="{{ route('monthlyHistory').'?year='.$year.'&month='.$m}}" class="btn btn-success w-100 mb-1 {{($z == $m)?'active-game-btn':''}}">
-                     {{$i}}
-                  </a>
-               </div>
-            @endforeach
+                        <a href="{{'/monthly-history?year='.$year.'&month='.$m.($sel_cat ? '&category='.$sel_cat : '')}}" class="btn btn-success w-100 mb-1 {{($z == $m)?'active-game-btn':''}}"
+                           >
+                        {{$i}}
+                        </a>
+            </div>
+                     @endforeach
          </div>
       </div>
    </div>
 </div>
-
 <div class="row justify-content-center mt-5">
    <div class="col-md-12 card upCard">
       <div class="card-body">
          <div class="row">
             <div class="col-2 game-head-btn-div">  
-               <a href="#" class="btn btn-success w-100 mb-1">
-                  S
+               <a href="{{ route('monthlyHistory').'?year='.$year.'&month='.$z}}" class="btn btn-success w-100 mb-1 {{($sel_cat == '')?'active-game-btn':''}}" class="btn btn-success w-100 mb-1">
+                  All
                </a>
             </div>
-            <div class="col-2 game-head-btn-div">
-               <a href="#" class="btn btn-success w-100 mb-1">
-                  M
+            @foreach($game_categories as $gc => $c) 
+            <div class="col-2 game-head-btn-div">  
+               <a href="{{ route('monthlyHistory').'?year='.$year.'&month='.$z.'&category='.$c->name}}" class="btn btn-success w-100 mb-1 {{($c->name == $sel_cat)?'active-game-btn':''}}" class="btn btn-success w-100 mb-1">
+                  {{$c->name}}
                </a>
             </div>
-            <div class="col-2 game-head-btn-div">
-               <a href="#" class="btn btn-success w-100 mb-1">
-                  River
-               </a>
-            </div>
-            <div class="col-2 game-head-btn-div">
-               <a href="#" class="btn btn-success w-100 mb-1">
-                  X
-               </a>
-            </div>
+            @endforeach
          </div>
       </div>
    </div>
@@ -364,9 +356,7 @@ tr:nth-child(odd) {
       <div class="card mb-4">
          <div class="card-body px-0 pt-0 pb-2">
             <div class="row d-flex">
-               <button  class="btn  btn-primary mb-0" style="background-color:#FF9800;"  >
-                  <a href="#popup3" style="color:white;">Add History</a>
-               </button>
+               <button  class="btn  btn-primary mb-0" style="background-color:#FF9800;"  > <a href="#popup3" style="color:white;">Add History</a></button>
                <div id="popup3" class="overlay" style="z-index: 9;">
                   <div class="popup">
                      <h2>Add History</h2>
@@ -436,6 +426,7 @@ tr:nth-child(odd) {
                     <tr  >
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Day</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Total</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Profit/Loss</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Tip</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Balance</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Redeem</th>
@@ -456,6 +447,9 @@ tr:nth-child(odd) {
                            <span class="badge  bg-gradient-success">{{$item['count']}}</span>
                        </td>
                        <td class="align-middle text-center">
+                           <span class="badge  bg-gradient-{{($item['load'] - $item['redeem']) >= 0 ? 'success' : 'warning'}}">{{($item['load'] - $item['redeem']) < 0 ? '-' : ''}}${{abs($item['load'] - $item['redeem'])}}</span>
+                       </td>
+                       <td class="align-middle text-center">
                            <span class="badge  bg-gradient-success">{{$item['tip']}}</span>
                        </td>
                        <td class="align-middle text-center">
@@ -468,7 +462,7 @@ tr:nth-child(odd) {
                           <span class="badge  bg-gradient-success">{{$item['refer']}}</span>
                        </td>
                        <td class="align-middle text-center">
-                        <a href="#popup1" class="this-day-history btn btn-primary" data-year="{{$year}}" data-month="{{$month}}" data-day="{{$key}}" href="javascript:void(0);">
+                        <a href="#popup1" class="this-day-history btn btn-primary" data-year="{{$year}}" data-month="{{$month}}" data-day="{{$key}}" data-category="{{$sel_cat ? $sel_cat : 'all'}}" href="javascript:void(0);">
                            View
                         </a>
                            <div id="popup1" class="overlay">
@@ -480,22 +474,29 @@ tr:nth-child(odd) {
                                        <div class="col-12">
                                           <div class="card mb-4">
                                              <div class="card-header pb-0">
+                                                <div class="row w-100" style="justify-content: space-around;">
                                                 {{-- <h6>Authors table</h6> --}}
+                                                @foreach($game_categories as $gc => $c) 
+                                                <div class="col-2">
+                                                    <button class="btn btn-success history-type-change-btn-allDate game-category {{$c->name == $sel_cat ? 'active-game-btn': ''}}" data-year="{{$year}}" data-month="{{$month}}" data-day="" data-type="all" data-category="{{$c->name}}">{{$c->name}}</button>
+                                                </div>
+                                                @endforeach
+                                                </div>
                                                 <div class="row w-100" style="justify-content: space-around;">
                                                    <div class="col-2">
-                                                      <button class="btn btn-success history-type-change-btn-allDate" data-year="{{$year}}" data-month="{{$month}}" data-day="" data-type="all">All</button>
+                                                      <button class="btn btn-success history-type-change-btn-allDate game-type active-game-btn" data-year="{{$year}}" data-month="{{$month}}" data-day="" data-type="all" data-category="{{$sel_cat ? $sel_cat : 'all'}}">All</button>
                                                    </div>
                                                    <div class="col-2">
-                                                      <button class="btn btn-success history-type-change-btn-allDate" data-year="{{$year}}" data-month="{{$month}}" data-day="" data-type="load">Load</button>
+                                                      <button class="btn btn-success history-type-change-btn-allDate game-type" data-year="{{$year}}" data-month="{{$month}}" data-day="" data-type="load" data-category="{{$sel_cat ? $sel_cat : 'all'}}">Load</button>
                                                    </div>
                                                    <div class="col-2">
-                                                      <button class="btn btn-success history-type-change-btn-allDate" data-year="{{$year}}" data-month="{{$month}}" data-day="" data-type="redeem">Redeem</button>
+                                                      <button class="btn btn-success history-type-change-btn-allDate game-type" data-year="{{$year}}" data-month="{{$month}}" data-day="" data-type="redeem" data-category="{{$sel_cat ? $sel_cat : 'all'}}">Redeem</button>
                                                    </div>
                                                    <div class="col-2">
-                                                      <button class="btn btn-success history-type-change-btn-allDate" data-year="{{$year}}" data-month="{{$month}}" data-day="" data-type="refer">Bonus</button>
+                                                      <button class="btn btn-success history-type-change-btn-allDate game-type" data-year="{{$year}}" data-month="{{$month}}" data-day="" data-type="refer" data-category="{{$sel_cat ? $sel_cat : 'all'}}">Bonus</button>
                                                    </div>
                                                    <div class="col-2">
-                                                      <button class="btn btn-success history-type-change-btn-allDate" data-year="{{$year}}" data-month="{{$month}}" data-day="" data-type="tip">Tip</button>
+                                                      <button class="btn btn-success history-type-change-btn-allDate game-type" data-year="{{$year}}" data-month="{{$month}}" data-day="" data-type="tip" data-category="{{$sel_cat ? $sel_cat : 'all'}}">Tip</button>
                                                    </div>
                                                 </div>
                                                 <input type="hidden" name="type" class="user-current-game-history-input">
@@ -517,9 +518,12 @@ tr:nth-child(odd) {
                                                       <thead class="sticky" >
                                                          <tr  >
                                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
-                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amoount</th>
+                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
+                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FB Name</th>
+                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Game</th>
+                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Game ID</th>
                                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
-                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created by</th>
+                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Creator</th>
                                                          </tr>
                                                       </thead>
                                                       <tbody  class="user-history-body">
@@ -532,7 +536,7 @@ tr:nth-child(odd) {
                                        </div>
                                     </div>
                                  </div >
-                              </div >
+                             </div >
                               </div >
                           {{-- <button class="btn btn-primary">View</button> --}}
                        </td>
@@ -545,58 +549,5 @@ tr:nth-child(odd) {
      </div>
   </div>
 </div>
-@endsection
-
-@section('script')
-<script>
-$(document).ready(function() {
-    $('.this-day-history').on('click', function(e) {
-        var year = $(this).attr("data-year");
-        var month = $(this).attr("data-month");
-        var day = $(this).attr("data-day");
-        $('.history-type-change-btn-allDate').attr('data-day',day);
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        var actionType = "POST";
-        var ajaxurl = "{{route('thisDay')}}";
-        $.ajax({
-            type: actionType,
-            url: ajaxurl,
-            data: {
-                "year": year,
-                "month": month,
-                "day": day,
-            },
-            dataType: 'json',
-            beforeSend: function() {
-               $(".user-history-body").html('');
-            },
-            success: function(data) {
-                if (data != '') {
-                    optionLoop = '';
-                    options = data;
-                    var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                    options.forEach(function(index) {
-                        var date_format = new Date(index.created_at);
-                        var a = date_format.getDate() + ' ' + monthShortNames[date_format.getMonth()] + ', ' + date_format.getFullYear()+' '+date_format.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-                        optionLoop +=
-                            '<tr><td class="text-center">' + a + '</td><td class="text-center"><span class="badge  bg-gradient-success"> ' + index.amount_loaded + '$</span></td><td class="text-center">' + ((index.type == 'refer')?'bonus':index.type)  + '</td><td class="text-center">' + index.created_by.name + '</td></tr>';
-                    });
-                } else {
-                    optionLoop = '<tr><td>No History</td></tr>';
-                }
-                $(".user-history-body").html(optionLoop);
-    
-            },
-            error: function(data) {
-                toastr.error('Error', data.responseText);
-            }
-        });
-    });
- });
-</script>
 @endsection
 

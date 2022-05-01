@@ -137,21 +137,23 @@
                        <p class="text-sm mb-0 text-uppercase font-weight-bold"><label for="cars">Action:</label></p>
                     </center>
                     <div class="row">
-                       <div class="col-6">
+                       <div class="col-12">
                           <div class="numbers">
                              <div class="text-center">
-                              <button class="filter-all-history user-all btn btn-primary mt-0 mb-0" data-userId="" data-game="" style="background-color:#FF9800;">Go</button>
-                                {{-- <button type="filter-all-history user-all" data-userId="" data-game="" class="btn  btn-primary  mt-0 mb-0" style="background-color:#FF9800;">Go</button> --}}
+                              <button class="filter-all-history user-all btn btn-primary mt-4 mb-0" data-userId="" data-game="" style="background-color:#FF9800;">Go</button>
+                                {{-- <button type="filter-all-history user-all" data-userId="" data-game="" class="btn  btn-primary  mt-4 mb-0" style="background-color:#FF9800;">Go</button> --}}
                              </div>
                           </div>
                        </div>
-                       <div class="col-6">
+                    </div>
+                    <div class="row">
+                       <div class="col-12">
                           <div class="numbers">
                              <div class="text-center">
-                              <a href="javascript:void(0);" class="export-file btn btn-primary mt-0 mb-0" style="background-color:#FF9800;">
+                              <a href="javascript:void(0);" class="export-file btn btn-primary mt-4 mb-0" style="background-color:#FF9800;">
                                  Export
                               </a>
-                                {{-- <button type="button" class="btn  btn-primary  mt-0 mb-0" style="background-color:#FF9800;">Pdf</button> --}}
+                                {{-- <button type="button" class="btn  btn-primary  mt-4 mb-0" style="background-color:#FF9800;">Pdf</button> --}}
                              </div>
                           </div>
                        </div>
