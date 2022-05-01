@@ -1077,6 +1077,7 @@ public function tableop()
         $day = isset($request->day) ? $request->day : '';
         $category = isset($request->category) ? $request->category : '';
         $data = ['year' => $year, 'month' => $month, 'day' => $day];
+        $totals = ['tip' => 0, 'load' => 0, 'redeem' => 0, 'refer' => 0, 'cashAppLoad' => 0];
         $history = History::with('form')
             ->with('created_by')
             ->with('account')
@@ -1088,6 +1089,7 @@ public function tableop()
             ->get()
             ->toArray();
         $grouped = [];
+        $accounts = [];
         foreach ($history as $a => $b)
         {
             $form_game = FormGame::where('form_id', $b['form_id'])->where('account_id', $b['account_id'])->first();
@@ -1097,10 +1099,33 @@ public function tableop()
                 $form_game->toArray();
                 $b['form_game'] = $form_game;
                 array_push($grouped, $b);
+                ($b['type'] == 'tip') ? ($totals['tip'] = $totals['tip'] + $b['amount_loaded']) : ($totals['tip'] = $totals['tip']);
+                ($b['type'] == 'load') ? ($totals['load'] = $totals['load'] + $b['amount_loaded']) : ($totals['load'] = $totals['load']);
+                ($b['type'] == 'redeem') ? ($totals['redeem'] = $totals['redeem'] + $b['amount_loaded']) : ($totals['redeem'] = $totals['redeem']);
+                ($b['type'] == 'refer') ? ($totals['refer'] = $totals['refer'] + $b['amount_loaded']) : ($totals['refer'] = $totals['refer']);
+                ($b['type'] == 'cashAppLoad') ? ($totals['cashAppLoad'] = $totals['cashAppLoad'] + $b['amount_loaded']) : ($totals['cashAppLoad'] = $totals['cashAppLoad']);
+
+                if (!(isset($accounts[$b['account_id']])))
+                {
+                    $accounts[$b['account_id']] = 
+                    [
+                        'game_id' => $b['account']['id'], 
+                        'game_name' => $b['account']['name'], 
+                        'game_title' => $b['account']['title'], 
+                        'game_balance' => $b['account']['balance'], 
+                        'histories' => [],
+                        'totals' => $totals, 
+                        'total_transactions' => 0
+                    ];
+                }
             }
         }
+        $default_accounts = Account::get()->toArray();
+        $data['accounts'] = $accounts;
+        $data['default_accounts'] = $default_accounts;
+        $data['grouped'] = $grouped;
         // return Response::json($data);
-        return Response::json($grouped);
+        return Response::json($data);
     }
     public function filterUserHistoryAllData(Request $request)
     {

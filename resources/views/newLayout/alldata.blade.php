@@ -191,6 +191,11 @@ tr:nth-child(odd) {
       background: #5e5050cc;
     padding: 5px;
    }
+
+   .game-popup.game-categories-wrapper {
+      border: 1px solid #f2f2f2f2;
+      padding: 2px;
+   }
 </style>
 <div class="row">
   <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -466,7 +471,7 @@ tr:nth-child(odd) {
                            View
                         </a>
                            <div id="popup1" class="overlay">
-                              <div class="popup">
+                              <div class="popup" style="width:95%">
                                  <h2>History</h2>
                                  <a class="close" href="#">&times;</a>
                                  <div class="content ">
@@ -477,8 +482,9 @@ tr:nth-child(odd) {
                                                 <div class="row w-100" style="justify-content: space-around;">
                                                 {{-- <h6>Authors table</h6> --}}
                                                 @foreach($game_categories as $gc => $c) 
-                                                <div class="col-2">
+                                                <div class="col-2 game-popup game-categories-wrapper">
                                                     <button class="btn btn-success history-type-change-btn-allDate game-category {{$c->name == $sel_cat ? 'active-game-btn': ''}}" data-year="{{$year}}" data-month="{{$month}}" data-day="" data-type="all" data-category="{{$c->name}}">{{$c->name}}</button>
+                                                    <div class="game-category-info reset-to-blank"></div>
                                                 </div>
                                                 @endforeach
                                                 </div>

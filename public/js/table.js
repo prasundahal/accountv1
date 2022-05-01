@@ -51,7 +51,7 @@ $(document).ready(function() {
                     extend: 'print',
                     className: 'btn-sm btn-success',
                     title: 'Gamers',
-                    // orientation:'landscape',
+                    // orientation: 'landscape',
                     pageSize: 'A2',
                     header: true,
                     footer: false,
@@ -2155,6 +2155,7 @@ $(document).ready(function() {
         $('.history-type-change-btn-allDate.game-category[data-category="'+category+'"]').addClass('active-game-btn');
         $('.history-type-change-btn-allDate.game-type').attr('data-category',category);
         $('.history-type-change-btn-allDate.game-type[data-type="all"]').addClass('active-game-btn');
+        $('.game-category-info.reset-to-blank').html('');
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
@@ -2176,9 +2177,39 @@ $(document).ready(function() {
 
             },
             success: function(data) {
-                if (data != '') {
-                    optionLoop = '';
-                    options = data;
+                var accounts = data.accounts;
+                var default_accounts = data.default_accounts;
+                $.each($('.history-type-change-btn-allDate.game-category'), function() {
+                    var that = $(this);
+                    $.each(accounts, function(index,value){
+                        if(value.game_name == that.attr('data-category')) {
+                            that.siblings('.game-category-info.reset-to-blank').html('\
+                            Game Title: '+value.game_title+'\
+                            <br>Game Balance: '+value.game_balance+'\
+                            <br>Tip: '+value.totals.tip+'\
+                            <br>Load: '+value.totals.load+'\
+                            <br>Redeem: '+value.totals.redeem+'\
+                            <br>Bonus: '+value.totals.refer+'\
+                            ');
+                        }else {
+                            $.each(default_accounts, function(index,value){
+                                if(value.name == that.attr('data-category')) {
+                                    that.siblings('.game-category-info.reset-to-blank').html('\
+                                    Game Title: '+value.title+'\
+                                    <br>Game Balance: '+value.balance+'\
+                                    <br>Tip: 0\
+                                    <br>Load: 0\
+                                    <br>Redeem: 0\
+                                    <br>Bonus: 0\
+                                    ');
+                                }
+                            });
+                        }
+                    });
+                });
+                if (data.grouped != '') {
+                    var optionLoop = '',
+                    options = data.grouped;
                     var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                     options.forEach(function(index) {
                         var date_format = new Date(index.created_at);
@@ -2192,6 +2223,7 @@ $(document).ready(function() {
                             <td class="text-center">' + ((index.type == 'refer')?'bonus':index.type)  + '</td>\
                             <td class="text-center">' + index.created_by.name + '</td></tr>';
                     });
+
                 } else {
                     optionLoop = '<tr><td>No History</td></tr>';
                 }
