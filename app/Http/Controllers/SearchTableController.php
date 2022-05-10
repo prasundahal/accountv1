@@ -80,12 +80,17 @@ class SearchTableController extends Controller
             ->toArray();
             // dd($activeCashApp);
             if ($request->ajax()) {
+                $indicator = null;
+                $formGames = FormGame::where('account_id', $request->activeGameId)->whereHas('form')->with('form')->orderBy('game_id','asc');
                 if(strlen($request->value) > 3){
                     $formGames = $formGames->keywordSearch($request->value)->paginate(10);
+                    if($formGames->isEmpty()){
+                        $indicator = 'Data Not Found';
+                    }
                 }else{
                     $formGames = $formGames->paginate(10);
                 }
-                return view('newLayout.components.listTable', ['activeGame' => $activeGame, 'activeCashApp' => $activeCashApp,'formGames' => $formGames]);
+                return view('newLayout.components.listTable', ['activeGame' => $activeGame, 'activeCashApp' => $activeCashApp,'formGames' => $formGames, 'indicator' => $indicator]);
             }else{
                 $formGames = $formGames->paginate(10);
                 return view('newLayout.table', compact('forms', 'games', 'activeGame', 'history', 'activeCashApp', 'cashApp', 'formGames'));

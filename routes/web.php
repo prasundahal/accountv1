@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ActivityStatusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FormController;
@@ -106,6 +107,9 @@ Route::get('/gamers/edit/{id}', [App\Http\Controllers\NewHomeController::class, 
 Route::post('/gamers/update/{id}', [App\Http\Controllers\NewHomeController::class, 'gamerUpdate'])->name('gamerUpdate');
 Route::get('/gamers/destroy/{id}', [App\Http\Controllers\NewHomeController::class, 'gamerDestroy'])->name('gamerDestroy');
 Route::get('/inactive-players/{id}', [App\Http\Controllers\NewHomeController::class, 'inactivePlayers'])->name('inactive-players');
+
+//updated by Ameer Bajracharya 2022-05-05
+Route::post('/change-activity-status', [ActivityStatusController::class, 'changeActivityStatus'])->name('change-activity-status');
 
 Route::post('/gamers/update-balance', [App\Http\Controllers\NewHomeController::class, 'gamerUpdateBalance'])->name('gamerUpdateBalance');
 

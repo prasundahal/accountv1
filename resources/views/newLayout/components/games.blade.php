@@ -13,6 +13,7 @@
                                 $query['game'] = $game['title'];
                                 $query_result = http_build_query($query);
                             @endphp
+                            <input type="hidden" class="activeGameId" value="{{isset($activeGame) ? $activeGame['id'] : '1' }}">
                             <div class="col-xl-3 col-sm-3 mb-3 {{(isset($activeGame) && $activeGame['id'] == $game['id'])?'active-game-btn':''}}">
                                 <div class="card game-btn-card">
                                     <div class="card-body p-3">

@@ -64,9 +64,6 @@ $(document).ready(function() {
             ],
         });
     }
-    $('.select2').select2({
-        dropdownParent: $('.popup')
-    });
     $('.game-btn').on('click', function(e) {
         var gameTitle = $(this).attr('data-title');
         window.location.replace('/table?game=' + gameTitle);
@@ -75,13 +72,17 @@ $(document).ready(function() {
         $(".search-user").on("keyup", function() {
             var url  = window.location.origin + '/table';
             var value = $(this).val().toLowerCase();
+            var activeGameId = $('.activeGameId').val();
             $.ajax({
                 url: url,
                 method: 'post',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                data:{value: value},
+                data:{
+                    value: value,
+                    activeGameId: activeGameId,
+                },
                 success:function(data){
                     $('.authorTable').html(data)
                 }

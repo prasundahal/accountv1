@@ -13,11 +13,14 @@ class Form extends Model
     use SoftDeletes;
     protected $fillable = [
 
-        'full_name', 'number','email','intervals','mail','count','note','r_id','game_id','facebook_name','token'
+        'full_name', 'number','email','intervals','mail','count','note','r_id','game_id','facebook_name','token','status_id'
 
     ];
-    
+
     public function tips(){
         return $this->hasMany(FormTip::class,'form_id','id');
+    }
+    public function activityStatus(){
+        return $this->belongsTo(ActivityStatus::class, 'status_id');
     }
 }

@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\customMail;
 use App\Models\LoginLog;
+use App\Models\ActivityStatus;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -312,9 +313,9 @@ class NewHomeController extends Controller
         $array = array_column($differenceArray, 'form_id');
         // print_r(array(implode(',',$array)));
         // $models = Form::findMany([225,232,233]);
-        $forms = Form::whereIn('id', $array)->get();
-        // dd($users,$balance,$differenceArray,$array,$forms);
-        return view('newLayout.inactive-player', compact('forms', 'days'));
+        $forms = Form::with('activityStatus')->whereIn('id', $array)->get();
+        $activity_status = ActivityStatus::orderBy('status', 'asc')->get();
+        return view('newLayout.inactive-player', compact('forms', 'days', 'activity_status'));
     }
 
     public function userSpinner()

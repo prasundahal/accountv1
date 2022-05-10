@@ -13,6 +13,11 @@
         </tr>
     </thead>
     <tbody>
+        @isset($indicator)
+        <tr>
+            <td colspan="8" class="text-center"> {{ $indicator }} </td>
+        </tr>
+        @endisset()
         @if (isset($activeGame))
         @if (!empty($activeGame) && !empty($activeGame['form_games']))
         @php

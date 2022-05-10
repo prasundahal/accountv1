@@ -25,7 +25,7 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg1">
                       Add Game
                     </button>
-                 
+
                  </div>
                 </div>
                 <div class="table-responsive p-4" style="overflow-x:auto;">
@@ -119,7 +119,7 @@
               </div>
         </div>
     </div>
-      
+
     <div class="modal fade bd-example-modal-lg1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -166,13 +166,13 @@
           </div>
         </div>
     </div>
-   
+
 @endsection
 
 @section('script')
 <script>
       jQuery(document).ready( function () {
-        
+
         $('.datatable tbody').on('click', '.image-game', function () {
           $('#game-id-image').val($(this).data('id'));
           $('.editImageModal').modal('show');
@@ -198,7 +198,7 @@
                                 // console.log( index + ": " + $( this ).text() );
                             // })
                             // toastr.success('Success',"Deleted");
-                            
+
                         },
                         error: function (data) {
                             console.log(data);
@@ -219,7 +219,7 @@
               denyButtonText: `Delete`,
             }).then((result) => {
                 if (result.isConfirmed) {
-                } 
+                }
                 else if (result.isDenied) {
                     var cid = $(this).data('id');
                     $.ajax({
@@ -237,7 +237,7 @@
                                 // console.log( index + ": " + $( this ).text() );
                             });
                             toastr.success('Success',"Deleted");
-                            
+
                         },
                         error: function (data) {
                             console.log(data);
@@ -249,7 +249,7 @@
             });
         });
       });
-        
+
     </script>
 @endsection
 
